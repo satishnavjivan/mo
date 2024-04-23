@@ -27,8 +27,8 @@ export const SUBURB_API_URL = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-
 
 //Shop product API
 export const SHOP_CATEGORIES = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/snv/api_json/categories/categories_data.js`;
-export const SHOP_CATEGORIES_CAT_SLUG = `https://pooltableoffers.com.au/snv/api_json/categories/chield_cat_product_data.php`;
-export const SHOP_CATEGORIES_CAT_SLUG_CACHE = `https://pooltableoffers.com.au/snv/api_json/categories/cache/`;
+export const SHOP_CATEGORIES_CAT_SLUG = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/snv/api_json/categories/chield_cat_product_data.php`;
+export const SHOP_CATEGORIES_CAT_SLUG_CACHE = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/snv/api_json/categories/cache/`;
 export const SHOP_PRODUCTLIST_BY_PARAMETER = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/snv/api_json/product/filter_data.php`;
 export const SHOP_PRODUCTLIST = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/snv/api_json/product/products_data.js`;
 
