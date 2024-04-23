@@ -7,7 +7,7 @@ import { getPathNameFromUrl } from '../../utils/miscellaneous';
 import placeholder from '/public/assets/img/placeholder-300.png';
 
 function Search({ search, resultsShow, setResultsShow }) {
-     return '';
+    // return '';
     //console.log('search', search)
     const { product, category } = search;
 
