@@ -174,5 +174,3 @@ export async function getStaticPaths() {
 		fallback: FALLBACK,
 	};
 }
-
-
