@@ -2,7 +2,7 @@
  * Internal Dependencies.
  */
 //import Products from '../../src/components/products';
-import { HEADER_FOOTER_ENDPOINT, SHOP_CATEGORIES_CAT_SLUG, SHOP_CATEGORIES_CAT_SLUG_CACHE, SHOP_PRODUCTLIST_BY_PARAMETER } from '../../src/utils/constants/endpoints';
+import { HEADER_FOOTER_ENDPOINT, SHOP_CATEGORIES_CAT_SLUG, SHOP_CATEGORIES_CAT_SLUG_CACHE } from '../../src/utils/constants/endpoints';
 import isEmpty from 'is-empty';
 /**
  * External Dependencies.
