@@ -33,7 +33,7 @@ export default function cat_slug({ headerFooter}) {
     const { category_image_select_category_section } = headerFooter?.footer?.options ?? '';
     
     let cacheValid = 0;
-
+/*
     useEffect(()=>{
         (async () => {
                     const { cat_slug } = router?.query || {};
@@ -71,7 +71,7 @@ export default function cat_slug({ headerFooter}) {
 
                 
         })();
-    }, [router?.query?.cat_slug])
+    }, [router?.query?.cat_slug])*/
 
 
     console.log('categories', categories);
