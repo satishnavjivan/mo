@@ -25,12 +25,12 @@ export default function cat_slug({ headerFooter}) {
 
    
     
-    const { products } = categories;
-    const { cat_list } = categories;
-    const { cat_data } = categories;
-    const { single_category_image, single_category_image_url } = headerFooter?.footer?.options ?? '';
-    // Banner 
-    const { category_image_select_category_section } = headerFooter?.footer?.options ?? '';
+   //const { products } = categories;
+   //const { cat_list } = categories;
+   //const { cat_data } = categories;
+   //const { single_category_image, single_category_image_url } = headerFooter?.footer?.options ?? '';
+   //// Banner 
+   //const { category_image_select_category_section } = headerFooter?.footer?.options ?? '';
     
     let cacheValid = 0;
 /*
@@ -74,13 +74,13 @@ export default function cat_slug({ headerFooter}) {
     }, [router?.query?.cat_slug])*/
 
 
-    console.log('categories', categories);
-    console.log('cacheValid', cacheValid);
-    console.log('headerFooter', single_category_image);
-    console.log('category_image_select_category_section', category_image_select_category_section);
+    //console.log('categories', categories);
+    //console.log('cacheValid', cacheValid);
+    //console.log('headerFooter', single_category_image);
+    //console.log('category_image_select_category_section', category_image_select_category_section);
     //console.log('headerFooter',headerFooter?.footer?.options?.single_category_image_url);
-
-    return (
+    return  ('ok');
+    /*return (
             <Layout headerFooter={headerFooter || {}}
             seo={cat_data?.yoast_head_json ?? {}}
             uri={`/categories/${cat_data?.term_link ?? ''}`}>
@@ -153,7 +153,7 @@ export default function cat_slug({ headerFooter}) {
                         }
                     })()}  
             </Layout>
-        )
+        )*/
 }
 
 // getStaticProps // getServerSideProps
