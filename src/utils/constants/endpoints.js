@@ -56,7 +56,7 @@ export const PAGES_URL = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/
 
 // Local API url
 //export const NEXT_PUBLIC_SITE_API_URL='http://localhost:3000/'
-export const NEXT_PUBLIC_SITE_API_URL = 'https://pto-plum.vercel.app'
+export const NEXT_PUBLIC_SITE_API_URL = 'https://mo-lake.vercel.app'
 
 export const CHECKOUT_API_TIME_INT = 10000; // 10 secind
 export const CHECKOUT_API_CALL_LIMIT = 25;
