@@ -51,8 +51,8 @@ export async function getServerSideProps( { params } ) {
 	const { slug } = params || {};
 	const { data: headerFooterData } = await axios.get( HEADER_FOOTER_ENDPOINT );
 	const { data: product } = await getProductBySlug( slug );
-	const { data: reviews } = await getreviewsByProID( product[ 0 ]?.id );
-	
+	//const { data: reviews } = await getreviewsByProID( product[ 0 ]?.id );
+	const reviews = {};
 	return {
 		props: {
 			headerFooter: headerFooterData?.data ?? {},
