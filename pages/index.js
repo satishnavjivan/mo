@@ -1,7 +1,6 @@
 /**
  * Internal Dependencies.
  */
-import Products from '../src/components/products';
 import { HEADER_FOOTER_ENDPOINT, WEB_DEVICE } from '../src/utils/constants/endpoints';
 
 /**

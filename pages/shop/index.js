@@ -35,20 +35,20 @@ export default function Home({ headerFooter }) {
         }
 	}, []);
 	useEffect(()=>{
-		(async () => {
-			
-			await axios.request(SHOP_PRODUCTLIST)	
-			.then((response) => {
-				console.log('response',response.data);
-				setProducts(response.data);
-				SetLoading(false);
-			})
-			.catch((error) => {
-				console.log(error.response.data);
-				});
-			
-    })();
-}, [])
+				(async () => {
+					
+					await axios.request(SHOP_PRODUCTLIST)	
+					.then((response) => {
+						console.log('response',response.data);
+						setProducts(response.data);
+						SetLoading(false);
+					})
+					.catch((error) => {
+						console.log(error.response.data);
+						});
+					
+			})();
+		}, [])
 console.log('products',products);
 	return (
 		<Layout headerFooter={ headerFooter || {} } seo={ seo }>

@@ -2,7 +2,7 @@
  * Internal Dependencies.
  */
 //import Products from '../../src/components/products';
-import { HEADER_FOOTER_ENDPOINT, SHOP_CATEGORIES_CAT_SLUG, SHOP_CATEGORIES_CAT_SLUG_CACHE } from '../../src/utils/constants/endpoints';
+import { HEADER_FOOTER_ENDPOINT, SHOP_CATEGORIES_CAT_SLUG, SHOP_CATEGORIES_CAT_SLUG_CACHE, } from '../../src/utils/constants/endpoints';
 import isEmpty from 'is-empty';
 /**
  * External Dependencies.
@@ -35,7 +35,7 @@ export default function cat_slug({ headerFooter}) {
     
     let cacheValid = 0;
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         (async () => {
                     const { cat_slug } = router?.query || {};
                     var lastSlug = cat_slug[Object.keys(cat_slug)[Object.keys(cat_slug).length - 1]];
@@ -72,7 +72,7 @@ export default function cat_slug({ headerFooter}) {
 
                 
         })();
-    }, [router?.query?.cat_slug])
+    }, [router?.query?.cat_slug])*/
 
 
     console.log('categories', categories);
@@ -174,3 +174,5 @@ export async function getStaticPaths() {
 		fallback: FALLBACK,
 	};
 }
+
+
