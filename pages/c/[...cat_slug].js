@@ -35,7 +35,7 @@ export default function cat_slug({ headerFooter}) {
     
     let cacheValid = 0;
 
-    /*useEffect(()=>{
+    useEffect(()=>{
         (async () => {
                     const { cat_slug } = router?.query || {};
                     var lastSlug = cat_slug[Object.keys(cat_slug)[Object.keys(cat_slug).length - 1]];
@@ -72,7 +72,7 @@ export default function cat_slug({ headerFooter}) {
 
                 
         })();
-    }, [router?.query?.cat_slug])*/
+    }, [router?.query?.cat_slug])
 
 
     console.log('categories', categories);
