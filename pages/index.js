@@ -1,6 +1,7 @@
 /**
  * Internal Dependencies.
  */
+import Products from '../src/components/products';
 import { HEADER_FOOTER_ENDPOINT, WEB_DEVICE } from '../src/utils/constants/endpoints';
 
 /**
@@ -1253,7 +1254,7 @@ export default function Home({ headerFooter, pageData }) {
 export async function getStaticProps({ params }) {
 
 	const { data: headerFooterData } = await axios.get(HEADER_FOOTER_ENDPOINT);
-	const pageData = await getPage(params?.slug.pop() ?? 'homepage');
+	const pageData = await getPage(params?.slug.pop() ?? 'home');
 
 
 	return {

@@ -201,7 +201,7 @@ const Product = ({ product, tokenValid, options, customerData, setCustomerData }
 						return (
 							<ul className='flex items-center gap-1'>
 								{Object.keys(product?.pa_color_arr_img).map(element => {
-									//console.log('element', product?.pa_color_arr_img[element]);
+									console.log('element', product?.pa_color_arr_img[element]);
 									return (<>
 										<li className='border border-victoria-800'>
 											<Image
