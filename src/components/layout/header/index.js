@@ -217,7 +217,10 @@ const Header = ({ header, footer }) => {
 					<div className='container mx-auto flex items-center justify-between text-white'>
 						<ul className='lmenu'>
 							{!isEmpty(headerMenuItems) && headerMenuItems.length ? headerMenuItems.map(menuItem => {
-								if (menuItem?.classes == 'external') {
+								if(!menuItem?.classes.search("d-md-none"))
+								{
+									return '';
+								}else if (menuItem?.classes == 'external') {
 									return (
 										<li className='inline-block relative hover:before:content-[" "] hover:before:w-[80%] hover:before:h-[2px] hover:before:absolute hover:before:top-0 hover:before:left-0 hover:before:right-0 hover:before:mx-auto hover:before:bg-victoria-800'>
 											<Link href={menuItem?.url ?? ''} target="_blank" className="inline-block py-3 px-4 font-medium font-jost hover:bg-chelsea-500" dangerouslySetInnerHTML={{ __html: menuItem.title }} />

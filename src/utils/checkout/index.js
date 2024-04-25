@@ -345,7 +345,7 @@ export const createCheckoutSessionAndRedirect = async (
 		line_items:  [{
 			quantity: 1,
 			name: 'PTO',
-			images: [ 'https://pooltableoffers.com.au/wp-content/uploads/2023/09/logo.png' ],
+			images: [ 'https://mattressoffers.com.au/wp-content/uploads/2023/09/mo-logo.webp' ],
 			amount: Math.round( ( totalPriceDis ) * 100 ),
 			currency: 'aud',
 		}],

@@ -21,8 +21,8 @@ function Search({ search, resultsShow, setResultsShow }) {
         let tempArr_cat = category;
 
         Object.keys(split_data).forEach(item => {
-            const result = tempArr_cat.filter(x => x.content_word.find(a => a === split_data[item]) || x.title.match(split_data[item]));
-            if (result.length > 0) {
+            const result = tempArr_cat?.filter(x => x.content_word.find(a => a === split_data[item]) || x.title.match(split_data[item]));
+            if (result?.length > 0) {
                 tempArr_cat = result;
             } else {
                 tempArr_cat = result;
@@ -42,8 +42,8 @@ function Search({ search, resultsShow, setResultsShow }) {
         let tempArr = product;
 
         Object.keys(split_data).forEach(item => {
-            const result = tempArr.filter(x => x.content_word.find(a => a === split_data[item]) || x.title.match(split_data[item]));
-            if (result.length > 0) {
+            const result = tempArr?.filter(x => x.content_word.find(a => a === split_data[item]) || x.title.match(split_data[item]));
+            if (result?.length > 0) {
                 tempArr = result;
             } else {
                 tempArr = result;
