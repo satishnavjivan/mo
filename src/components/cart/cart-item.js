@@ -124,7 +124,7 @@ const CartItem = ({
 	if (item?.vp_url != undefined)
 	{
 		
-		p_slug = '/p/' + item?.vp_url+'?'+serialize(item?.variation);
+			p_slug = '/p/' + item?.vp_url+'?'+serialize(item?.variation);
 	}
 	if (!WEB_DEVICE) {
 		p_slug = '/product/?sname=' + item?.data?.slug;

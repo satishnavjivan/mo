@@ -9,7 +9,7 @@ import isEmpty from 'is-empty';
  */
 import axios from 'axios';
 import Layout from '../../src/components/layout';
-import Products from '../../src/components/products';
+import ProductsFilter from '../../src/components/products/products-filter';
 import Category from '../../src/components/categories/category';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -47,10 +47,10 @@ export default function cat_slug({ headerFooter}) {
                             cacheValid = 1;
                             setCategories(response.data);
                             }
-                        SetLoading(false);
+                        
                     })
                     .catch((error) => {
-                        console.log(error.response.data);
+                        console.log(error.response);
                         });
 
                     if(cacheValid == 0)  
@@ -62,13 +62,12 @@ export default function cat_slug({ headerFooter}) {
                                 cacheValid = 0;
                                 setCategories(response.data);
                                 }
-                            SetLoading(false);
                         })
                         .catch((error) => {
-                            console.log(error.response.data);
+                            console.log(error.response);
                             });
                     }
-                    
+                    SetLoading(false); 
 
                 
         })();
@@ -148,7 +147,7 @@ export default function cat_slug({ headerFooter}) {
                                                     }
                                                 })()}
                                             </div>
-                                            <Products products={products} />
+                                            <ProductsFilter products={products} />
                          </div>
                         )
                         }
@@ -158,7 +157,7 @@ export default function cat_slug({ headerFooter}) {
 }
 
 // getStaticProps // getServerSideProps
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const { data: headerFooterData } = await axios.get(HEADER_FOOTER_ENDPOINT);
     return {
         props: {
@@ -166,13 +165,13 @@ export async function getStaticProps() {
         },
     };
 };
-
+/*
 export async function getStaticPaths() {
 	const pathsData = [];
     return {
 		paths: pathsData,
 		fallback: FALLBACK,
 	};
-}
+}*/
 
 

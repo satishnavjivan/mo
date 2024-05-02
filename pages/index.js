@@ -16,7 +16,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import Link from 'next/link';
-import Product from '../src/components/products/product';
+import ProductList from '../src/components/products/productlist';
 
 import img1 from '../public/assets/img/home/sofas-sofa-bed.webp';
 
@@ -635,7 +635,7 @@ export default function Home({ headerFooter, pageData }) {
 													}
 													return (
 														<div className='p-2'>
-															<Product key={productRel?.id} product={productRel} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
+															<ProductList key={productRel?.id} product={productRel} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
 														</div>
 													)
 												})
@@ -674,7 +674,7 @@ export default function Home({ headerFooter, pageData }) {
 													}
 													return (
 														<div className='p-2'>
-															<Product key={productRel?.id} product={productRel} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
+															<ProductList key={productRel?.id} product={productRel} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
 														</div>
 													)
 												})

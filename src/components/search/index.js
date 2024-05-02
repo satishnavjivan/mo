@@ -5,21 +5,28 @@ import { useEffect, useState } from 'react';
 import { WEB_DEVICE } from '../../utils/constants/endpoints';
 import { getPathNameFromUrl } from '../../utils/miscellaneous';
 import placeholder from '/public/assets/img/placeholder-300.png';
+import { isEmpty } from 'lodash';
+import Loader from "../../../src/components/loaderspin";
+import axios from 'axios';
 
 function Search({ search, resultsShow, setResultsShow }) {
     // return '';
     //console.log('search', search)
-    const { product, category } = search;
+    //const { product, category } = search ?? {};
+    const [product,setProduct] = useState({});
+    const [category,setCategory] = useState({});
 
     const [results, setResults] = useState({});
     const [resultsCat, setResultsCat] = useState({});
     const [input, setInput] = useState("")
     const fetchCat = async (value) => {
+        if(!isEmpty(category))
+        {
         var key = value;
         var split_data = key.toLowerCase();
         var split_data = split_data.split(" ");
         let tempArr_cat = category;
-
+        
         Object.keys(split_data).forEach(item => {
             const result = tempArr_cat?.filter(x => x.content_word.find(a => a === split_data[item]) || x.title.match(split_data[item]));
             if (result?.length > 0) {
@@ -29,13 +36,15 @@ function Search({ search, resultsShow, setResultsShow }) {
             }
         });
         setResultsCat({ ...resultsCat, product_cat: tempArr_cat });
+        }
 
     };
 
 
     const fetchData = async (value) => {
 
-
+        if(!isEmpty(product))
+        {
         var key = value;
         var split_data = key.toLowerCase();
         var split_data = split_data.split(" ");
@@ -50,6 +59,7 @@ function Search({ search, resultsShow, setResultsShow }) {
             }
         });
         setResults({ ...results, products: tempArr });
+        }
     };
 
     const handleChange = (value) => {
@@ -61,8 +71,19 @@ function Search({ search, resultsShow, setResultsShow }) {
     }
 
     useEffect(() => {
-        handleChange('');
+        (async () => {
+            const {data : product_list} = await axios.get(process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL+'/search_data_new.json');
+             setProduct(product_list);
+
+             const {data : search_cat} = await axios.get(process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL+'/search_cat.json');
+             setCategory(search_cat);
+        })();
+        
     }, [])
+
+    useEffect(() => {
+        handleChange('');
+    }, [product && category])
 
     const submitSearch = () => {
        // console.log('input', input);
@@ -95,58 +116,74 @@ function Search({ search, resultsShow, setResultsShow }) {
                     </div>
                     <input type="search" placeholder='Please Search here' minLength={3} value={input} onChange={(e) => handleChange(e.target.value)} className="outline-none block w-full p-3 pr-12 text-sm text-gray-900 border border-gray-300 focus:border-victoria-400" />
                 </div>
-                <div className='grid grid-cols-4 gap-3 border border-grey-300 p-2'>
-                    <div className="result_product_cat">
-                        <h3 className='font-semibold mb-2 px-2'>Categories</h3>
-                        <ul className='overflow-y-auto h-[calc(100vh_-_315px)] theme-scroll'>
-                            {
-                                resultsCat.product_cat ?
-                                    resultsCat.product_cat.map((cat, i) => {
-                                        var cat_url = getPathNameFromUrl(cat?.url ?? '');
-                                        return (
-                                            <li key={i}>
-                                                <Link href={!WEB_DEVICE ? '/cat?sname=' + cat_url.split('/').slice(-2, -1)[0] : '/c' + cat_url} className='product_cat border-b border-grey-100 py-1 px-2 w-full inline-block capitalize hover:text-victoria-600' result={cat.title} key={i}>
-                                                    {cat.title}
-                                                </Link>
-                                            </li>
-                                        )
-                                    })
-                                    : ''
-                            }
-                        </ul>
-                    </div>
-                    <div className='result_product col-span-3'>
-                        <h3 className='font-semibold mb-2'>Products : {results.products ? results.products.length : ''}</h3>
-                        <ul className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 overflow-y-auto h-[calc(100vh_-_315px)] theme-scroll'>
-                            {
-                                results.products ?
-                                    results.products.slice(0, 25).map((result, id) => {
-                                        var p_slug = '';
-                                        if (!WEB_DEVICE) {
-                                            p_slug = '/product/?sname=' + getPathNameFromUrl(result.url ?? '');
-                                        } else {
-                                            p_slug = '/p' + getPathNameFromUrl(result.url ?? '');
+                
+                {(() => {
+                     if(isEmpty(product))
+                     {
+                        return (
+                            <div className='grid grid-cols-1 gap-3 border border-grey-300 p-2 text-center'>
+									<Loader />
+							</div>
+                        );
+                     }else{
+                        return(
+                            <div className='grid grid-cols-4 gap-3 border border-grey-300 p-2'>
+                                <div className="result_product_cat">
+                                    <h3 className='font-semibold mb-2 px-2'>Categories</h3>
+                                    <ul className='overflow-y-auto h-[calc(100vh_-_315px)] theme-scroll'>
+                                        {
+                                            resultsCat.product_cat ?
+                                                resultsCat.product_cat.map((cat, i) => {
+                                                    var cat_url = getPathNameFromUrl(cat?.url ?? '');
+                                                    return (
+                                                        <li key={i}>
+                                                            <Link href={!WEB_DEVICE ? '/cat?sname=' + cat_url.split('/').slice(-2, -1)[0] : '/c' + cat_url} className='product_cat border-b border-grey-100 py-1 px-2 w-full inline-block capitalize hover:text-victoria-600' result={cat.title} key={i}>
+                                                                {cat.title}
+                                                            </Link>
+                                                        </li>
+                                                    )
+                                                })
+                                                : ''
                                         }
-                                        return (
-                                            <li key={id} className='border border-gray-200 p-1'>
-                                                <Link href={p_slug} className='products'>
-                                                    <Image
-                                                        src={result.image ? result.image : placeholder}
-                                                        alt={result.title}
-                                                        width={100}
-                                                        height={100}
-                                                        className='mx-auto'
-                                                    />
-                                                    <p className='line-clamp-2 text-sm hover:text-victoria-600' result={result.title} key={id} >{result.title}</p>
-                                                </Link>
-                                            </li>
-                                        )
-                                    }) : ''
-                            }
+                                    </ul>
+                                </div>
+                                <div className='result_product col-span-3'>
+                                    <h3 className='font-semibold mb-2'>Products : {results.products ? results.products.length : ''}</h3>
+                                    <ul className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 overflow-y-auto h-[calc(100vh_-_315px)] theme-scroll'>
+                                        {
+                                            results.products ?
+                                                results.products.slice(0, 25).map((result, id) => {
+                                                    var p_slug = '';
+                                                    if (!WEB_DEVICE) {
+                                                        p_slug = '/product/?sname=' + getPathNameFromUrl(result.url ?? '');
+                                                    } else {
+                                                        p_slug = '/p' + getPathNameFromUrl(result.url ?? '');
+                                                    }
+                                                    return (
+                                                        <li key={id} className='border border-gray-200 p-1'>
+                                                            <Link href={p_slug} className='products'>
+                                                                <Image
+                                                                    src={result.image ? result.image : placeholder}
+                                                                    alt={result.title}
+                                                                    width={100}
+                                                                    height={100}
+                                                                    className='mx-auto'
+                                                                />
+                                                                <p className='line-clamp-2 text-sm hover:text-victoria-600' result={result.title} key={id} >{result.title}</p>
+                                                            </Link>
+                                                        </li>
+                                                    )
+                                                }) : ''
+                                        }
 
-                        </ul>
-                    </div>
-                </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        );
+                     }
+                })()}   
+                    
+                
             </div>
         </div >
     )

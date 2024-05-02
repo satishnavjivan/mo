@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import Warranty_tab from './Warranty_tab';
 import Shipping_guide_tab from './Shipping_guide_tab';
 import Reward_points_tab from './Reward_points_tab';
-import Product from '../products/product';
+import ProductList from '../products/productlist';
 import Review from './../review/Review';
 import { isEmpty } from 'lodash';
 import { getMemberOnlyProduct, getNewProductTag, replace_wordpress_url, storeYourBrowsingHistory } from '../../utils/customjs/custome';
@@ -986,7 +986,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 													}
 													return (
 														<div className='p-2'>
-															<Product key={productRel?.id} product={productRel} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
+															<ProductList key={productRel?.id} product={productRel} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
 														</div>
 													)
 												})
@@ -1020,7 +1020,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 														}
 														return (
 															<div className='p-2'>
-																<Product key={yourBrowsingHistory[key]?.id} product={yourBrowsingHistory[key]} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
+																<ProductList key={yourBrowsingHistory[key]?.id} product={yourBrowsingHistory[key]} Membersonly={Membersonly} tokenValid={tokenValid} options={options} customerData={customerData} setCustomerData={setCustomerData} />
 															</div>
 														)
 													}

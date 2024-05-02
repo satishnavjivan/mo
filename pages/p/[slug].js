@@ -46,7 +46,7 @@ export default function Product( { headerFooter, product,reviews } ) {
 	);
 }
 // getStaticProps // getServerSideProps
-export async function getStaticProps( { params } ) {
+export async function getServerSideProps( { params } ) {
 	
 	const { slug } = params || {};
 	const { data: headerFooterData } = await axios.get( HEADER_FOOTER_ENDPOINT );
@@ -62,7 +62,7 @@ export async function getStaticProps( { params } ) {
 		
 	};
 }
-
+/*
 export async function getStaticPaths() {
 	//const { data: products } = await getProductsData();
 	
@@ -73,10 +73,10 @@ export async function getStaticPaths() {
 		if ( product.slug ) {
 			pathsData.push( { params: { slug: product.slug ?? '' } } );
 		}
-	} );*/
+	} );
 	
 	return {
 		paths: pathsData,
 		fallback: true,
 	};
-}
+}*/

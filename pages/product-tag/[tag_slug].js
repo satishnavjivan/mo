@@ -9,7 +9,7 @@
   */
  import axios from 'axios';
  import Layout from '../../src/components/layout';
-import Products from '../../src/components/products';
+import ProductsFilter from '../../src/components/products/products-filter';
 
 
  export default function tag_slug({ headerFooter, products }) {
@@ -27,7 +27,7 @@ import Products from '../../src/components/products';
     }else{
         return (
             <Layout headerFooter={headerFooter || {}}>
-                <Products products={products}/>
+                <ProductsFilter products={products}/>
             </Layout>
         )
     }

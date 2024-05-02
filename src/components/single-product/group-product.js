@@ -37,18 +37,18 @@ function group_product({ options, product, bundle_discount }) {
                             {
                                 grouped_products.map(product => {
                                     const img = product?.images?.[0] ?? {};
-                                    var p_slug = '/p/' + product?.slug;
                                     var p_price = '';
-
+                                    
                                     var membersonly = getMemberOnlyProduct(options, product, messageText);
                                     if (bundle_discount > 0) {
                                         p_price = get_discount_price(product);
                                         p_price = (p_price - ((p_price * bundle_discount) / 100));
                                         p_price = parseFloat(p_price).toFixed(2);
                                     }
-
+                                    
+                                    var p_slug = '/p/' + product?.slug;
                                     if (!WEB_DEVICE) {
-                                        p_slug = '/product/?sname=' + product?.slug;
+                                         p_slug = '/product/?sname=' + product?.slug;
                                     }
                                     return (
                                         <tr>

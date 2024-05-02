@@ -1,7 +1,7 @@
 /**
  * Internal Dependencies.
  */
-import Products from '../../src/components/products';
+import ProductsFilter from '../../src/components/products/products-filter';
 import { HEADER_FOOTER_ENDPOINT, SHOP_PRODUCTLIST } from '../../src/utils/constants/endpoints';
 
 /**
@@ -57,7 +57,7 @@ console.log('products',products);
 							<Loader />
 						</div>
 						:
-						<Products products={products} options={options} tokenValid={tokenValid}/>
+						<ProductsFilter products={products} options={options} tokenValid={tokenValid}/>
 						}
 		</Layout>
 	)
