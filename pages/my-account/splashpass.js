@@ -168,7 +168,7 @@ export default function splashpass({ headerFooter, countriesData }) {
 									</div>
 									<div className={`sm:inline-block w-[2px] sm:min-w-6 lg:min-w-12 h-5 sm:h-0.5 ms-11 sm:ms-0 ${mem_level >= 3 ? 'bg-victoria-700' : 'bg-gray-300'}`}></div>
 								</div>
-								<div className='mt-12 mb-5 shadow-full p-2 sm:p-5 flex items-center justify-between border border-violet-700 bg-violet-100'>
+								<div className='mt-12 mb-5 shadow-full p-2 sm:p-5 flex items-center justify-between border border-victoria-400 bg-chelsea-100'>
 									<div>
 										<h3 className='font-semibold text-3xl text-victoria-700'>Save {membership_benefits[mem_level][2]}</h3>
 										<p className='text-red-600'>*shipping cost excluded</p>

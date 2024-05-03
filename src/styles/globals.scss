@@ -6,7 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
-$primary: #4e4a88;
+$primary: #7dbbb6;
 
 // Font Styles.
 @import "font-awesome-pro.css";
@@ -15,7 +15,7 @@ $primary: #4e4a88;
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 .bg-facebook {
-    background-color: #3b5999;
+    background-color: #7cbbb6;
 }
 .bg-instagram {
     background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -62,7 +62,7 @@ $primary: #4e4a88;
     height: 23px;
     border: 2px solid #ddd;
     border-radius: 50%;
-    border-top-color: #5653a2;
+    border-top-color: #7dbbb6;
     animation: spin 1s linear infinite;
     display: block;
 }
@@ -221,7 +221,7 @@ $primary: #4e4a88;
         &:before {
             position: absolute;
             content: '';
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 6.827 6.827"><path fill="%2372aa4a" fill-rule="nonzero" d="M.96 3.568h3.082v-.31H.96z"/><path fill="%234e4a88" fill-rule="nonzero" d="M4.148 2.536v2.046l.242-.164 1.29-.877.187-.128-.188-.127-1.29-.877-.24-.164z"/></svg>');
+            background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBMaWNlbnNlOiBNSVQuIE1hZGUgYnkgRGF2ZXkgSGV1c2VyOiBodHRwczovL3R3aXR0ZXIuY29tL2RhdmV5aGV1c2VyIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIKCSBpZD0iTGF5ZXJfMSIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgaW1hZ2UtcmVuZGVyaW5nPSJvcHRpbWl6ZVF1YWxpdHkiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIgoJIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDAgNDAiCgkgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDAgNDA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojN0NCQkI2O30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEsMjEuMmgyMy45di0yLjRIMVYyMS4yeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjUuNywxMy4yVjI5bDEuOS0xLjNsMTAtNi44bDEuNC0xbC0xLjUtMWwtMTAtNi44TDI1LjcsMTFMMjUuNywxMy4yeiIvPgo8L3N2Zz4=');
             left: 0;
             width: 34px;
             height: 34px;

@@ -37,6 +37,7 @@ export default function cat_slug({ headerFooter}) {
 
     useEffect(()=>{
         (async () => {
+                    SetLoading(true);
                     const { cat_slug } = router?.query || {};
                     var lastSlug = cat_slug[Object.keys(cat_slug)[Object.keys(cat_slug).length - 1]];
                     let rsCat = null;

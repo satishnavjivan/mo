@@ -52,7 +52,8 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 	const [tokenValid, setTokenValid] = useState(0);
 	const [membersonly, setMembersonly] = useState('');
 	const [customerData, setCustomerData] = useState(0);
-
+	const [variableProduct, setVariableProduct] = useState(true);
+	
 	const [productCountQty, setProductCountQty] = useState(1);
 	const [att_selected, setAtt_selected] = useState('');
 
@@ -169,7 +170,8 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 			}
 		})
 	}, [customerData]);
-	console.log('mem_level', mem_level);
+	//console.log('mem_level', mem_level);
+	
 	// Dicount timer
 	useEffect(() => {
 		if ((singleProduct.type == 'simple' || product.type == 'variation') && (product.meta_data.product_discount != '') && product.meta_data.product_discount != undefined) {
@@ -287,12 +289,18 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 		if (!isEmpty(singleProduct)) {
 			if (!isEmpty(singleProduct?.product_variations[att_select])) {
 				setProduct(singleProduct?.product_variations[att_select]);
+				setVariableProduct(true);
 			} else {
 				setProduct(singleProduct);
+				if(att_select != '')
+				{
+					setVariableProduct(false);
+				}
 			}
 		}
 
 	}
+	console.log('variableProduct', variableProduct);
 	const clear_drop = async () => {
 		$(".attribut_drop").each(function () {
 			$(this).val('');
@@ -650,6 +658,11 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 							);
 						}
 					})()}
+					{variableProduct ? null:<>
+					<div key="variation-not" className='text-red-500'>
+							Variation not available.
+					</div>
+					</>}
 					<div key="estimated-time">
 						<p>Estimated Dispatch*: Leaves warehouse in 1-2 business days</p>
 						{product.meta_data.product_code == 'VX' ? <>
