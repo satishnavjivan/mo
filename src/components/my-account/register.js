@@ -43,13 +43,13 @@ function RegisterForm() {
 	const validationSchema = Yup.object().shape({
 		user_email: Yup.string()
 			.required('Email is required')
-			.matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, 'Email is invalid custome')
+			.matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, 'Please enter valid email id.')
 			.email('Email is invalid'),
 		password: Yup.string()
-			.min(6, 'Password must be at least 6 characters')
-			.required('Password is required'),
+		.required('Password is required')
+		.min(6, 'Password must be at least 6 characters'),
 		confirmPassword: Yup.string()
-			.oneOf([Yup.ref('password'), null], 'Passwords must match')
+			.oneOf([Yup.ref('password'), null], 'Your password and confirmation password do not match. ')
 			.required('Confirm Password is required'),
 	});
 	const formOptions = { resolver: yupResolver(validationSchema) };
@@ -254,17 +254,17 @@ function RegisterForm() {
 						{messageOtp.success ? <div className="d-block text-green-500">{messageOtp.message}</div> : null}
 					</div>
 					<label className="block mb-4">
-						<span className='block text-base mb-1'>Email</span>
+						<span className='block text-base mb-1'>Email <span className='text-red-500'>*</span></span>
 						<input name="user_email" type="text" {...register('user_email')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 						<div className="d-block text-red-500">{errors.user_email?.message}</div>
 					</label>
 					<label className="block mb-4">
-						<span className='block text-base mb-1'>Password</span>
+						<span className='block text-base mb-1'>Password <span className='text-red-500'>*</span></span>
 						<input name="password" type="password" {...register('password')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 						<div className="d-block text-red-500">{errors.password?.message}</div>
 					</label>
 					<label className="block mb-4">
-						<span className='block text-base mb-1'>Confirm Password</span>
+						<span className='block text-base mb-1'>Confirm Password <span className='text-red-500'>*</span></span>
 						<input name="confirmPassword" type="password" {...register('confirmPassword')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 						<div className="d-block text-red-500">{errors.confirmPassword?.message}</div>
 					</label>

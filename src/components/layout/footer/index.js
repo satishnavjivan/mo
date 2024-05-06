@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import playstoreicon from '../../../../public/assets/img/google-play-store.svg';
 import appstoreicon from '../../../../public/assets/img/app-store.svg';
-import appbarcode from '../../../../public/assets/img/pto-app.png';
+import appbarcode from '../../../../public/assets/img/pto-app1.png';
 import { WEB_DEVICE } from '../../../utils/constants/endpoints';
 import SubscribeEmail from '../../../components/subscribe_email'
 import SubscribeEmailPopup from '../../../components/subscribe_email_popup'

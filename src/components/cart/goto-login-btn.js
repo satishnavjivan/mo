@@ -13,7 +13,7 @@ const GotoLoginBtn = () => {
   return(	
   		<button onClick={()=>{
 		Router.push("/my-account/");
-		}}>{btnText}</button>
+		}} className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer">{btnText}</button>
   	)
 };
 

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react';
-import Loader from "./../../public/loader.gif";
 import axios from 'axios';
 import { HEADER_FOOTER_ENDPOINT, USER_CHANGEPASS, USER_FORGOT, USER_KEYVERI, USER_REGIS } from '../../src/utils/constants/endpoints';
 import Layout from '../../src/components/layout';
@@ -10,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import GotoLoginBtn from '../../src/components/cart/goto-login-btn';
+import Loaderspin from "../../src/components/loaderspin";
 
 
 
@@ -56,13 +56,13 @@ export default function lostPassword({ headerFooter }) {
 			login: event.username,
 		};
 		setLoginFields({ ...loginFields, loading: true });
-		axios.post(USER_FORGOT, loginData)
+		await axios.post(USER_FORGOT, loginData)
 			.then(res => {
 				console.log('res', res.data);
 				if (res.data.code == '200') {
 					setLostSuccess('Password reset link has been sent to your registered email.');
 				} else {
-					setLostError('User not found');
+					setLostError('Invalid username or email.');
 				}
 			})
 			.catch(err => {
@@ -98,7 +98,7 @@ export default function lostPassword({ headerFooter }) {
 	const { register, handleSubmit, reset, formState } = useForm(formOptions);
 	const { errors } = formState;
 
-	const onFormSubmitForgot = (event) => {
+	const onFormSubmitForgot = async(event) => {
 		var userData = localStorage.getItem('lpKeyValid');
 		if (userData != undefined) {
 			userData = JSON.parse(userData);
@@ -113,7 +113,7 @@ export default function lostPassword({ headerFooter }) {
 			setRegisFields({ ...regisFields, regis_loading: true });
 
 
-			axios.post(USER_CHANGEPASS, userReqData)
+			await axios.post(USER_CHANGEPASS, userReqData)
 				.then(res => {
 					console.log('res', res);
 					if (res.data.code == '200') {
@@ -225,7 +225,7 @@ export default function lostPassword({ headerFooter }) {
 	}, [router.query.key]);
 
 	console.log(lpKeyValid);
-	console.log('regisFields', regisFields.regis_error);
+	console.log('loginFields', loginFields);
 
 	if (!lpKeyValid) {
 		return (
@@ -233,21 +233,25 @@ export default function lostPassword({ headerFooter }) {
 				<React.Fragment>
 					<div className="max-w-2xl mx-auto border border-gray-200 p-3 rounded">
 						<h4 className="mb-4 text-center text-2xl font-jost font-semibold">Lost password</h4>
+						<p className='mb-4 text-center'>Lost your password? Please enter your username or email address. You will receive a link to create a new link via email.</p>
 						{lostError && <div className="d-block text-red-500" dangerouslySetInnerHTML={createMarkup(lostError)} />}
 						{lostSuccess ?
 							<>
-								<div className="text-green-700" dangerouslySetInnerHTML={createMarkup(lostSuccess)} />
-								<button onClick={(e) => { setLostSuccess(''); }} className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer" >Go Back</button>
+								<div className='text-center mt-5 mb-2'>
+									<div className="text-green-700" dangerouslySetInnerHTML={createMarkup(lostSuccess)} />
+									<button onClick={(e) => { setLostSuccess(''); }} className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer" >Go Back</button>
+								</div>
 							</> :
 							<form onSubmit={handleSubmit_l(onFormSubmitLostPassword)}>
 								<label className="block mb-4">
-									<span className='block text-base mb-1'>Username OR Email</span>
+									<span className='block text-base mb-1'>Username OR Email <span className='text-red-500'>*</span></span>
 									<input name="username" type="text" {...register_l('username')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 									<div className="d-block text-red-500">{errorsLogin.username?.message}</div>
 								</label>
 								<div className='text-center mt-5 mb-2'>
-									<button className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer" type="submit">Reset password</button>
-									{loading && <img className="loader" src={Loader.src} alt="Loader" />}
+									<button className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer" type="submit">
+									{loginFields?.loading ? <div className='py-[3px]'><Loaderspin></Loaderspin></div> : 'Reset password'}
+									</button>
 								</div>
 							</form>
 						}
@@ -265,8 +269,10 @@ export default function lostPassword({ headerFooter }) {
 						{regisFields.regis_error && <div className="d-block text-red-500" dangerouslySetInnerHTML={createMarkup(regisFields.regis_error)} />}
 						{regisFields.regis_success ?
 							<>
+								<div className='text-center mt-5 mb-2'>
 								<div className="text-green-700" dangerouslySetInnerHTML={createMarkup(regisFields.regis_success)} />
 								<GotoLoginBtn></GotoLoginBtn>
+								</div>
 							</>
 							:
 							<form onSubmit={handleSubmit(onFormSubmitForgot)}>
@@ -283,9 +289,10 @@ export default function lostPassword({ headerFooter }) {
 									</label>
 								</div>
 								<div className='text-center mt-5 mb-2'>
-									<button className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer" type="submit">Save</button>
+									<button className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer" type="submit">
+										{regis_loading ? <div className='py-[3px]'><Loaderspin></Loaderspin></div> : 'Save'}
+									</button>
 								</div>
-								{regis_loading && <img className="loader" src={Loader.src} alt="Loader" />}
 							</form>
 						}
 					</div>

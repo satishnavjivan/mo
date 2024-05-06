@@ -39,7 +39,7 @@ function enquiry({ product }) {
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
 			.required('Email is required')
-			.matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, 'Email is invalid custome')
+			.matches(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, 'Please enter valid email id.')
 			.email('Email is invalid'),
 		user: Yup.string()
 			.required('Name is required'),
@@ -114,17 +114,17 @@ function enquiry({ product }) {
 			<div className='border-t border-gray-200 pt-3 mt-3'>
 				<form onSubmit={handleSubmit(onFormSubmitenquiry)}>
 					<label className="block mb-4">
-						<span className='block text-base mb-1'>Name</span>
+						<span className='block text-base mb-1'>Name <span className='text-red-500'>*</span></span>
 						<input name="user" type="text" {...register('user')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 						<div className="d-block text-red-500">{errors.user?.message}</div>
 					</label>
 					<label className="block mb-4">
-						<span className='block text-base mb-1'>Email</span>
+						<span className='block text-base mb-1'>Email <span className='text-red-500'>*</span></span>
 						<input name="email" type="text" {...register('email')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 						<div className="d-block text-red-500">{errors.email?.message}</div>
 					</label>
 					<label className="block mb-4">
-						<span className='block text-base mb-1'>Enquiry</span>
+						<span className='block text-base mb-1'>Enquiry <span className='text-red-500'>*</span></span>
 						<textarea name="enquiry" type="text" {...register('enquiry')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
 						<div className="d-block text-red-500">{errors.enquiry?.message}</div>
 					</label>

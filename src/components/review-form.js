@@ -137,7 +137,7 @@ function reviewForm({ product, tokenValid ,customerData , orderData}) {
 					</div>
                         <div className="d-block text-red-500">{errors.c_review?.message}</div>
                         <label className="block mb-4">
-                            <span className='block text-base mb-1'>Review</span>
+                            <span className='block text-base mb-1'>Review <span className='text-red-500'>*</span></span>
                             <textarea name="c_message" type="text" onClick={regishandleOnChange} {...register('c_message')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
                             <div className="d-block text-red-500">{errors.c_message?.message}</div>
                         </label>

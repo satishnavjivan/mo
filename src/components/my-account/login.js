@@ -119,12 +119,12 @@ function LoginForm({ setTokenValid, tokenValid, setCustomerData }) {
                 {error && <div className="text-red-500" dangerouslySetInnerHTML={createMarkup(error)} />}
                 <form onSubmit={handleSubmit_l(onFormSubmitLogin)}>
                     <label className="block mb-4">
-                        <span className='block text-base mb-1'>Username</span>
+                        <span className='block text-base mb-1'>Username <span className='text-red-500'>*</span></span>
                         <input name="username" type="text" {...register_l('username')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
                         <div className="d-block text-red-500">{errorsLogin.username?.message}</div>
                     </label>
                     <label className="block mb-4">
-                        <span className='block text-base mb-1'>Password</span>
+                        <span className='block text-base mb-1'>Password <span className='text-red-500'>*</span></span>
                         <input name="password" type="password" {...register_l('password')} className='outline-none block w-full py-2 px-3 text-base  border border-gray-300 focus:border-victoria-400' />
                         <div className="d-block text-red-500">{errorsLogin.password?.message}</div>
                     </label>

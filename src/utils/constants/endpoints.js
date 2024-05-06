@@ -73,6 +73,9 @@ export const SUBSCRIBE_EMAIL = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp
 // Product Enquiry
 export const PRODUCT_ENQUIRY = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/shop-nj/v1/product_enquiry`;
 
+// Become supplier
+export const BECOME_SUPPLIER = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/shop-nj/v1/become_supplier`;
+
 //splashpass
 export const SPLASHPASS = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/shop-nj/v1/splashpass`;
 
