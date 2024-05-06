@@ -344,7 +344,7 @@ export const createCheckoutSessionAndRedirect = async (
 		//line_items: getStripeLineItems( products ),
 		line_items:  [{
 			quantity: 1,
-			name: 'PTO',
+			name: 'MO',
 			images: [ 'https://mattressoffers.com.au/wp-content/uploads/2023/09/mo-logo.webp' ],
 			amount: Math.round( ( totalPriceDis ) * 100 ),
 			currency: 'aud',
