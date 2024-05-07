@@ -502,7 +502,7 @@ export default function Home({ headerFooter }) {
 								className='mx-auto'
 							/>
 							<h3 className='font-semibold text-xl'>Create a free account</h3>
-							<p><Link className="underline underline-offset-4 font-semibold" href="https://pooltableoffers.com.au/my-account/" target="_blank">Create a free account</Link> or <Link className="underline underline-offset-4 font-semibold" href="https://pooltableoffers.com.au/my-account/" target="_blank">Login</Link> to Pool Table Offers</p>
+							<p><Link className="underline underline-offset-4 font-semibold" href="/my-account/" target="_blank">Create a free account</Link> or <Link className="underline underline-offset-4 font-semibold" href="/my-account/" target="_blank">Login</Link> to Mattress Offers</p>
 						</div>
 						<div className='bg-black text-white p-3 text-center rounded-lg shadow-[8px_8px_10px_0px_#e53e3e]'>
 							<Image
@@ -513,7 +513,7 @@ export default function Home({ headerFooter }) {
 								className='mx-auto'
 							/>
 							<h3 className='font-semibold text-xl'>Shop & collect Points</h3>
-							<p>Collect Splash Pass Rewards Points for every* $1 you spend at the Pool Table Offers</p>
+							<p>Collect Splash Pass Rewards Points for every* $1 you spend at the Mattress Offers</p>
 						</div>
 						<div className='bg-black text-white p-3 text-center rounded-lg shadow-[8px_8px_10px_0px_#e53e3e]'>
 							<Image

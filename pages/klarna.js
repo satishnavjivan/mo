@@ -103,7 +103,7 @@ export default function Home({ headerFooter }) {
 							height={250}
 						/>
 					</div>
-					<div className='grid md:grid-cols-3 gap-7'>
+					{/*}<div className='grid md:grid-cols-3 gap-7'>
 						<Link href='#' className='bg-[#d3baef] border border-[#492874] text-center space-y-2 p-3 rounded group'>
 							<Image
 								src={pooltable}
@@ -135,7 +135,7 @@ export default function Home({ headerFooter }) {
 							<h4 className='font-semibold'>Soccer Table</h4>
 						</Link>
 					</div>
-					<div className='grid grid-cols-1'>
+					{*/}<div className='grid grid-cols-1'>
 						<Image
 							src={klarnalending}
 							alt="klarnalending"

@@ -474,7 +474,7 @@ export default function Home({ headerFooter }) {
 			answer: (
 				<> <p>We can arrange the return of the product, provided it must be in original packing.</p>
 					<p> We will than provide you the store credit after returning the product back to us and then you can use it to make your next purchase.</p>
-					<p>* Return charges will be incurred in case of change of mind <Link href='/warranty-return-policy/' class='alink-color'>(return policy)</Link>
+					<p>* Return charges will be incurred in case of change of mind <Link href='/warranty-return/' class='alink-color'>(return policy)</Link>
 					</p>
 				</>
 			),
