@@ -15,8 +15,8 @@ const Categories = ({ categories }) => {
 		setVisibleCategory(visibleCategory === categoryId ? null : categoryId);
 	};
 
-	// const categorylayout = 'categoryList';
-	const categorylayout = 'categoryBox';
+	const categorylayout = 'categoryList';
+	//const categorylayout = 'categoryBox';
 
 	const firstLevelCategories = categories.filter(function (element) { return element.parent == 0 })
 	//console.log('firstLevelCategories',firstLevelCategories);

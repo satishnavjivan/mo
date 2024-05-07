@@ -147,7 +147,21 @@ export default function Home({ headerFooter }) {
                                                     }
                                                 </td>
                                                 <td className='border border-slate-300 p-2 text-center'>
-                                                    <WishlistButton customerData={customerData} setCustomerData={setCustomerData} product={product} tokenValid={tokenValid} listing={true} />
+                                                    {(() => {
+                                                        if(wishlistProducts.length == 1)
+                                                        {
+                                                            return(
+                                                                <div className='border border-victoria-700 flex items-center justify-center w-fit mx-auto'>
+                                                                    <button onClick={clearAll} className='size-10 inline-block'><i className="fa-solid fa-trash text-red-600"></i></button>
+                                                                </div>
+                                                            );
+                                                        }else{
+                                                            return(
+                                                                <WishlistButton customerData={customerData} setCustomerData={setCustomerData} product={product} tokenValid={tokenValid} listing={true} />
+                                                            );
+                                                        }
+                                                    })()} 
+                                                    
                                                 </td>
                                             </tr>
                                         )

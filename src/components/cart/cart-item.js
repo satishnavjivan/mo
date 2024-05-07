@@ -133,7 +133,7 @@ const CartItem = ({
 				p_slug = '/product/?sname=' + item?.vp_url+'&'+serialize(item?.variation);
 			}
 	}
-
+	console.log('item c',item);
 	useEffect(() => {
 		if (!isEmpty(item.data?.meta_data) && (item.data?.meta_data != '')) {
 			let found = item.data?.meta_data.find(function (metaitem) {

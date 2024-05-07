@@ -22,6 +22,10 @@ const Breadcrumbs = ({ pageData = '' }) => {
 			const linkPath = router.asPath.split('/');
 			linkPath.shift();
 			const pathArray = linkPath.map((path, i) => {
+				if(path == 'c')
+				{
+					path = 'Categories';
+				}
 				return { breadcrumb: path, href: '/' + linkPath.slice(0, i + 1).join('/') };
 			});
 			if (pathArray[0]?.breadcrumb == 'c') { pathArray.splice(-1, 1) }
@@ -32,7 +36,7 @@ const Breadcrumbs = ({ pageData = '' }) => {
 	if (!breadcrumbs) {
 		return null;
 	}
-
+console.log('breadcrumbs',breadcrumbs);
 	if (breadcrumbs[0]?.breadcrumb != '') {
 		return (
 			<nav aria-label="Breadcrumb" className="flex justify-center py-2 border-b border-victoria-100 font-jost">
@@ -45,12 +49,25 @@ const Breadcrumbs = ({ pageData = '' }) => {
 					</li>
 					{breadcrumbs.map((breadcrumb, i) => {
 						return (
+							<>
+							{(() => {
+								if(breadcrumb.href == '/checkout')
+								{
+								return (<li key={breadcrumb.href} className="relative flex items-center">
+								<i className="fa-regular fa-angle-right text-xl"></i>
+								<Link href={'/cart/'} className="flex h-10 items-center px-5 text-sm font-medium transition hover:text-victoria-800">
+									CART
+								</Link>
+								</li>)
+								}
+							})()}   
 							<li key={breadcrumb.href} className="relative flex items-center">
 								<i className="fa-regular fa-angle-right text-xl"></i>
 								<Link href={breadcrumb.href.split("?")[0]} className="flex h-10 items-center px-5 text-sm font-medium transition hover:text-victoria-800">
 									{convertBreadcrumb(breadcrumb.breadcrumb.split("?")[0].split("#")[0])}
 								</Link>
 							</li>
+							</>
 						);
 					})}
 				</ol>

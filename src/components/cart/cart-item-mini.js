@@ -3,7 +3,7 @@ import { isEmpty } from "lodash";
 import Image from '../image';
 import { deleteCartItem, updateCart } from '../../utils/cart';
 import Link from 'next/link';
-import { getPriceRemoveDiscount } from '../../utils/customjs/custome';
+import { getPriceRemoveDiscount, serialize } from '../../utils/customjs/custome';
 import { WEB_DEVICE } from '../../utils/constants/endpoints';
 import Loaderspin from '../loaderspin';
 
@@ -124,11 +124,21 @@ const CartItem = ({
 	}
 	console.log('item?.data', item?.data);
 	const productPrice = getPriceRemoveDiscount(item?.data);
+	
 	var p_slug = '/p/' + item?.data?.slug;
+	if (item?.vp_url != undefined)
+	{
+			p_slug = '/p/' + item?.vp_url+'?'+serialize(item?.variation);
+	}
 	if (!WEB_DEVICE) {
 		p_slug = '/product/?sname=' + item?.data?.slug;
+		if (item?.vp_url != undefined)
+			{
+				p_slug = '/product/?sname=' + item?.vp_url+'&'+serialize(item?.variation);
+			}
 	}
 
+	console.log('item m',item);
 	useEffect(() => {
 		if (!isEmpty(item.data?.meta_data) && (item.data?.meta_data != '')) {
 			let found = item.data?.meta_data.find(function (metaitem) {

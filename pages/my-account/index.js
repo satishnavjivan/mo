@@ -71,7 +71,7 @@ export default function Login({ headerFooter }) {
 	const contents = [
 		<div className='border border-gray-200 p-3 rounded'>
 			<LoginForm setTokenValid={setTokenValid} setCustomerData={setCustomerData} tokenValid={tokenValid}></LoginForm>
-			<LoginPhone setTokenValid={setTokenValid} setCustomerData={setCustomerData} tokenValid={tokenValid}></LoginPhone>
+			{/* TMP none }<LoginPhone setTokenValid={setTokenValid} setCustomerData={setCustomerData} tokenValid={tokenValid}></LoginPhone>{*/}
 			{(() => {
 				if (!session) {
 					/*return <>
@@ -79,8 +79,8 @@ export default function Login({ headerFooter }) {
 					  <button onClick={() => signOut()}>Sign out</button>
 					</>*/
 					return <>
-						Not signed in <br />
-						<button onClick={() => signIn()}>Sign in</button>
+						{/* TMP none }Not signed in <br />
+						<button onClick={() => signIn()}>Sign in</button>{*/}
 						{/*}<iframe src="http://localhost:3000/api/auth/signin" frameborder="0"></iframe>{*/}
 					</>
 				}

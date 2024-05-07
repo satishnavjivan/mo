@@ -170,7 +170,8 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 			}
 		})
 	}, [customerData]);
-	//console.log('mem_level', mem_level);
+	console.log('mem_level', mem_level);
+	
 	
 	// Dicount timer
 	useEffect(() => {
@@ -232,13 +233,14 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 				}, 1000);*/
 			} else {
 				setTimer(0);
-				setCashback((Math.round((product.price)) / membership_benefits[mem_level][0]));
+				setCashback((Math.round((product.price)) * membership_benefits[mem_level][0])/100);
 				setCashbackpoints((Math.round((product.price)) * membership_benefits[mem_level][0]));
 			}
 		} else {
 			setTimer(0);
-			setCashback((Math.round((product.price)) / membership_benefits[mem_level][0]));
+			setCashback((Math.round((product.price)) * membership_benefits[mem_level][0])/100);
 			setCashbackpoints((Math.round((product.price)) * membership_benefits[mem_level][0]));
+			console.log('f s ',(Math.round((product.price)) * membership_benefits[mem_level][0]));
 		}
 		setProductCountQty(1);
 		setShippingCharge('<span>Calculate Shipping</span>');
