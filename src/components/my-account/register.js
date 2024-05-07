@@ -64,6 +64,7 @@ function RegisterForm() {
 			phonedis: countrycode + phone,
 			user_email: event.user_email,
 			user_pass: event.password,
+			recaptch: regisFields.captcha,
 		};
 		if (phone != '') {
 			if (!verifyPhone) {

@@ -16,17 +16,17 @@ import icon2 from '../public/assets/img/fq-shopping.png';
 import icon3 from '../public/assets/img/fq-return.png';
 import icon4 from '../public/assets/img/fq-refunds.png';
 import icon5 from '../public/assets/img/fq-product.png';
-import shippingcost from '../public/assets/img/shipping-cost.webp';
+import shippingcost from '../public/assets/img/shipping-cost.png';
 
-import addtocart from '../public/assets/img/add-to-cart.webp';
-import clicktocart from '../public/assets/img/click-to-cart.webp';
-import clikccheckout from '../public/assets/img/click-checkout.webp';
-import fillupdetail from '../public/assets/img/fillup-detail.webp';
-import placeorder from '../public/assets/img/place-order.webp';
-import viewcart from '../public/assets/img/click-viewcart.webp';
-import clickx from '../public/assets/img/click-x.webp';
-import rewardaccount from '../public/assets/img/rewards-point-account.webp';
-import rewardpoint from '../public/assets/img/rewards-point.webp';
+import addtocart from '../public/assets/img/add-to-cart.png';
+import clicktocart from '../public/assets/img/click-to-cart.png';
+import clikccheckout from '../public/assets/img/click-checkout.png';
+import fillupdetail from '../public/assets/img/fillup-detail.png';
+import placeorder from '../public/assets/img/place-order.png';
+import viewcart from '../public/assets/img/click-viewcart.png';
+import clickx from '../public/assets/img/click-x.png';
+import rewardaccount from '../public/assets/img/rewards-point-account.png';
+import rewardpoint from '../public/assets/img/rewards-point.png';
 
 
 export default function Home({ headerFooter }) {
@@ -108,7 +108,7 @@ export default function Home({ headerFooter }) {
 			answer: (
 				<>
 					<p>
-						You can track your order through the tracking provided to you to check it's status. For more details, you may contact us at <a href='mailto: sales@pooltableoffers.com.au'>sales@pooltableoffers.com.au</a> and our team will
+						You can track your order through the tracking provided to you to check it's status. For more details, you may contact us at <a href='mailto: sales@mattressoffers.com.au'>sales@mattressoffers.com.au</a> and our team will
 						respond you asap.
 					</p>
 				</>

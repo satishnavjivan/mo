@@ -25,7 +25,11 @@ console.log('category.category_thumb',category.category_thumb)
 					height="200"
 					className='mx-auto'
 				/>
-				<h6 className="font-bold py-2 border-t border-victoria-700 group-hover:text-white group-hover:bg-victoria-700">{category?.name ?? ''}</h6>
+				<h6 dangerouslySetInnerHTML={{
+							__html: category?.name ?? '',
+						}}
+						className="font-bold py-2 border-t border-victoria-700 group-hover:text-white group-hover:bg-victoria-700"
+					/>
 			</Link>
 		</div>
 	)

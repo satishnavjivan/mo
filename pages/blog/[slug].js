@@ -80,7 +80,7 @@ const Post = ({ headerFooter, postData, commentsData, postsData }) => {
 						<Image className={'rounded-3xl'} src={AuthorImage}>
 
 						</Image>
-						<h4>Pooltable Offers</h4>
+						<h4>Hitesh Soni</h4>
 					</div>
 					</div>
 				</div>

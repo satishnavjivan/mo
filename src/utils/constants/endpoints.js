@@ -45,7 +45,7 @@ export const USER_ORDER_TRACKING = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL
 export const GETORDERID = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/shop-nj/v1/get_orderid_by_order_no`;
 
 // Re captach 
-export const CAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+export const CAPTCHA_SITE_KEY = '6Lcxwd0kAAAAAPotJibWFZxSuDcKVkHCIp90-Vcj';
 
 // Wishlist
 export const WISHLIST_URL = `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-json/shop-nj/v1/wishlist`;

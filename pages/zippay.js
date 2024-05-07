@@ -50,7 +50,7 @@ export default function Home({ headerFooter }) {
 
 					<p><b>Secure Digital Wallet:- </b> They Provide An Amazing Digital Wallet Feature Which Allows Users To Securely Store Their Payment Details And Other Related Things. Because Of This Customers Easily Purchase The Products Using Their ZipPay Account.</p>
 
-					<p><b>Accepted At Various Retailers Online & Offline:- </b> ZipPay is Accepted By a Huge Range of Retailers Across Australia in Online & Offline Stores. Customers Can Easily Use ZipPay To Buy Products and Participating Cheap ZipPay Stores, Including <Link className="alink-color" href="/pool-table/">Pool Table</Link>, <Link className="alink-color" href="/poker-table/">Poker table</Link>, <Link className="alink-color" href="/soccer-table/">Soccer Table</Link> ZipPay And More.</p>
+					<p><b>Accepted At Various Retailers Online & Offline:- </b> ZipPay is Accepted By a Huge Range of Retailers Across Australia in Online & Offline Stores. </p>
 
 					<p><b>Account Management Options:- </b> It Offers An Online Portal and Mobile Application To Manage The Account Efficiently. Even Users Can View Their Transactions, Check Their Balances, Make Repayments, Update Their Account Details, and many other things.</p>
 
@@ -129,7 +129,7 @@ export default function Home({ headerFooter }) {
 				<>
 					<p>Individuals Are Only Allowed to have one ZipPay Account so Opening Multiple Accounts is Not Permitted.include </p>
 					<p> ZIP Pay Australia: Your Gateway to Flexible Payments and Easy Shopping!</p>
-					<p>Discover the convenience of Zip Pay in Australia at Pool Table Offers. Our platform offers a seamless shopping experience, allowing you to browse and buy a wide range of products. From zippay furniture to sex toys zippay, we have what you need to enhance your lifestyle. Experience a smarter way to shop with Zip Pay in Australia. Shop at Pool Table Offers today and indulge in the products you desire. Don't miss out on the opportunity to enjoy your purchases while managing your budget effectively.</p>
+					<p>Discover the convenience of Zip Pay in Australia at Mattress Offers. Our platform offers a seamless shopping experience, allowing you to browse and buy a wide range of products. From zippay furniture to sex toys zippay, we have what you need to enhance your lifestyle. Experience a smarter way to shop with Zip Pay in Australia. Shop at Mattress Offers today and indulge in the products you desire. Don't miss out on the opportunity to enjoy your purchases while managing your budget effectively.</p>
 				</>
 			),
 		},
@@ -147,7 +147,7 @@ export default function Home({ headerFooter }) {
 							height={250}
 						/>
 					</div>
-					<div className='grid md:grid-cols-3 gap-7'>
+					{/*}<div className='grid md:grid-cols-3 gap-7'>
 						<Link href='#' className='bg-[#ede6ff] border border-[#aa8fff] text-center space-y-2 p-3 rounded group'>
 							<Image
 								src={pooltable}
@@ -179,6 +179,7 @@ export default function Home({ headerFooter }) {
 							<h4 className='font-semibold'>Soccer Table</h4>
 						</Link>
 					</div>
+					{*/}
 					<div className='grid grid-cols-1'>
 						<Image
 							src={zipbanner}

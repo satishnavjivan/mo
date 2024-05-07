@@ -122,7 +122,7 @@ const CartItem = ({
 	if (item?.data?.stock_quantity > productCount) {
 		maxQty = false;
 	}
-	console.log('item?.data', item?.data);
+	//console.log('item?.data', item?.data);
 	const productPrice = getPriceRemoveDiscount(item?.data);
 	
 	var p_slug = '/p/' + item?.data?.slug;
@@ -138,7 +138,7 @@ const CartItem = ({
 			}
 	}
 
-	console.log('item m',item);
+	
 	useEffect(() => {
 		if (!isEmpty(item.data?.meta_data) && (item.data?.meta_data != '')) {
 			let found = item.data?.meta_data.find(function (metaitem) {
