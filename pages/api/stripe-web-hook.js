@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY, {
-    apiVersion: '2023-08-16'
+    apiVersion: '2020-08-27'
 });
 const webhookSecret = process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_ENDPOINT_SECRET;
 
@@ -99,7 +99,7 @@ const handler = async (req, res) => {
 
             //  Get ch_    (intent.latest_charge) 
             const intent = await stripe.paymentIntents.retrieve(checkoutSession.payment_intent, {
-                apiVersion: '2023-08-16',
+                apiVersion: '2022-11-15',
               });
 
             // All transaction details Run
