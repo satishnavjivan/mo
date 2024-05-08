@@ -4,21 +4,22 @@ import { sanitize } from '../../utils/miscellaneous';
 import AddToCart from '../cart/add-to-cart';
 import { isEmpty } from 'lodash';
 import ExternalLink from './external-link';
-import { getMemberOnlyProduct, getNewProductTag } from '../../utils/customjs/custome';
+import { getMemberOnlyProduct, getNewProductTag, getProductMidweek } from '../../utils/customjs/custome';
 import { get_coupon_box, get_custom_badge, get_gridtimer } from '../../utils/shop/shop-box';
 import Gridtimer from './gridtimer';
 import WishlistButton from '../wishlist/wishlistbutton'
 import { WEB_DEVICE } from '../../utils/constants/endpoints';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ProductList = ({ product, tokenValid, options, customerData, setCustomerData }) => {
 	if (isEmpty(product)) {
 		return null;
 	}
-
+	
 
 	const img = product?.images?.[0] ?? {};
 	const [hoverImg, setHoverImg] = useState(img?.src ?? '');
+	const [productMidweek, setProductMidweek] = useState('');
 
 	const productType = product?.type ?? '';
 	// member only  
@@ -41,6 +42,14 @@ const ProductList = ({ product, tokenValid, options, customerData, setCustomerDa
 		p_slug = '/product/?sname=' + product?.slug;
 	}
 
+	// Product Midweek
+	useEffect(() => {
+		
+		if (options?.nj_product_midweek_mania_discount) {
+			setProductMidweek(getProductMidweek(options, product));
+		}
+	}, [product]);
+	
 	return (
 		<div className='h-full shadow-full group relative pb-14'>
 			{(() => {
@@ -195,7 +204,16 @@ const ProductList = ({ product, tokenValid, options, customerData, setCustomerDa
 						);
 					}
 				})()}
-
+				{(() => {
+					if (productMidweek != '' && product?.type == 'simple' ) {
+						return (
+							<div className='items-center justify-center w-full p-2 border-t border-gray-200 gap-2 text-red-600 font-semibold'>
+								{productMidweek}
+							</div>
+						);
+					}
+				})()}
+				
 				{(() => {
 					if (product?.type == 'variable' && product?.pa_color_arr_img != undefined && Object.keys(product?.pa_color_arr_img).length > 0) {
 						return (

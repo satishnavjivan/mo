@@ -14,7 +14,7 @@ import Reward_points_tab from './Reward_points_tab';
 import ProductList from '../products/productlist';
 import Review from './../review/Review';
 import { isEmpty } from 'lodash';
-import { getMemberOnlyProduct, getNewProductTag, replace_wordpress_url, storeYourBrowsingHistory } from '../../utils/customjs/custome';
+import { getMemberOnlyProduct, getNewProductTag, getProductMidweek, replace_wordpress_url, storeYourBrowsingHistory } from '../../utils/customjs/custome';
 import BuyNow from '../cart/buy-now';
 import InputQty from '../single-product/input-qty';
 import $ from 'jquery';
@@ -51,6 +51,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 
 	const [tokenValid, setTokenValid] = useState(0);
 	const [membersonly, setMembersonly] = useState('');
+	const [productMidweek, setProductMidweek] = useState('');
 	const [customerData, setCustomerData] = useState(0);
 	const [variableProduct, setVariableProduct] = useState(true);
 	
@@ -248,7 +249,16 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 
 	}, [product])
 	useEffect(() => {
-		setYourBrowsingHistory(storeYourBrowsingHistory(product));
+		var att_select = '';
+		$(".attribut_drop").each(function () {
+			if ($(this).val() != '') {
+				att_select += $(this).val() + '__';
+			}
+		});
+		if(att_select == '')
+		{
+			setYourBrowsingHistory(storeYourBrowsingHistory(product));
+		}
 	}, [product]);
 	if (!isEmpty(reviews)) {
 		reviews.sort(function (a, b) {
@@ -274,6 +284,13 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 			setMembersonly(getMemberOnlyProduct(options, product, messageText));
 		}
 	}, [tokenValid, product]);
+
+	// Product Midweek
+	useEffect(() => {
+		if (options?.nj_product_midweek_mania_discount) {
+			setProductMidweek(getProductMidweek(options, product));
+		}
+	}, [product]);
 
 	// Coupon box
 	var coupon_box = get_coupon_box(options, product.sku);
@@ -312,6 +329,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 	}
 	console.log('variation product ', product);
 	console.log('membersonly product ', membersonly);
+	console.log('productMidweek product ', productMidweek);
 
 	// Nested Accordion
 	const [accordionOpen, setAccordionOpen] = useState([]);
@@ -514,6 +532,20 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 							);
 						}
 					})()}
+					{(() => {
+						// productMidweek
+						if (productMidweek != '') {
+							return (
+								<div key="productMidweek"
+									dangerouslySetInnerHTML={{
+										__html: productMidweek ?? '',
+									}}
+									className="productmidweek text-red-600 font-semibold"
+								/>
+							);
+						}
+					})()}
+					
 					{(() => {
 						if (product.type == 'simple' || product.type == 'variation') {
 							if (product.stock_quantity < 1) {

@@ -35,6 +35,9 @@ export default function cat_slug({ headerFooter}) {
     
     let cacheValid = 0;
 
+    const options = headerFooter?.footer?.options;
+	const [tokenValid,setTokenValid]=useState(0);
+
     useEffect(()=>{
         (async () => {
                     SetLoading(true);
@@ -148,7 +151,7 @@ export default function cat_slug({ headerFooter}) {
                                                     }
                                                 })()}
                                             </div>
-                                            <ProductsFilter products={products} />
+                                            <ProductsFilter products={products} options={options} tokenValid={tokenValid}/>
                          </div>
                         )
                         }
