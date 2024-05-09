@@ -1,7 +1,7 @@
 /**
  * Internal Dependencies.
  */
-import { HEADER_FOOTER_ENDPOINT, WEB_DEVICE } from '../src/utils/constants/endpoints';
+import { HEADER_FOOTER_ENDPOINT, OPTIONS_ENDPOINT, WEB_DEVICE } from '../src/utils/constants/endpoints';
 
 /**
  * External Dependencies.
@@ -70,6 +70,8 @@ export default function Home({ headerFooter, pageData }) {
 	console.log('pageData',pageData);
 	const { slider_options } = pageData?.acf;
 	const options = headerFooter?.footer?.options ?? '';
+	//const [options, setOptions] = useState({});
+
 	const [sliderList, setSliderList] = useState(null);
 	const [tokenValid, setTokenValid] = useState(0);
 	const [customerData, setCustomerData] = useState(0);
@@ -116,6 +118,25 @@ export default function Home({ headerFooter, pageData }) {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 	};
+
+	/*useEffect(()=>{
+		(async () => {
+	
+			let config = {
+				method: 'POST',
+				maxBodyLength: Infinity,
+				url: OPTIONS_ENDPOINT,
+			  };
+		  		await axios.request(config)	
+					.then((response) => {
+						console.log('response',response.data)
+						setOptions(response?.data?.options);
+					  })
+					  .catch((error) => {
+						console.log(error.response);
+					  });
+    })();
+	}, [])*/
 
 	useEffect(() => {
 		var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];

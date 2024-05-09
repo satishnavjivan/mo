@@ -458,7 +458,7 @@ export function get_discount_type_cart(cartItems, options, setCartSubTotalDiscou
   }
 
 
-   // Product Midweek
+   // Product Midweek cart
    var productMidweekDiscount_cal = 0;
    if (options?.nj_product_midweek_mania_discount) {
     const d = new Date();
@@ -492,10 +492,65 @@ export function get_discount_type_cart(cartItems, options, setCartSubTotalDiscou
     }else{
       cartSubTotalDiscountTmp.productMidweekDiscount = '';
     }
-     
    } else {
      //console.log(' vv tokenValid discount NOT');
      cartSubTotalDiscountTmp.productMidweekDiscount = '';
+   }
+
+
+   // all_and_sku cart
+   var all_and_skuDiscount_cal = 0;
+   if (options?.nj_all_and_sku_login_user_discount_all_and_sku_enable && (cartSubTotalDiscountTmp.productMidweekDiscount == '') && (tokenValid == 1)) 
+   {
+    if(options?.nj_all_and_sku_login_user_discount_sku_enable)
+    {
+            //console.log('cartItems',cartItems);
+            //console.log('cat',options.exclude_category_for_discount_sku_list);
+            var line_subtotal = 0;
+            {
+              cartItems.length &&
+              cartItems.map((item) => {
+                var toDay = new Date();
+              var multi_start_date = new Date(options?.nj_all_and_sku_login_user_discount_sku_start_date + ' 00:00:00');
+              var multi_end_date = new Date(options?.nj_all_and_sku_login_user_discount_sku_end_date + ' 23:59:59');
+              if (multi_start_date <= toDay && toDay <= multi_end_date) 
+              {
+                var rate_p = get_all_and_sku_sku_rate(options,item.data.sku);
+                console.log('rate_p ==',rate_p);
+                console.log('item.data ==',item);
+                console.log('item.data.price ==',item.data.price);
+                console.log('item.quantity ==',item.quantity);
+                if(rate_p != '')
+                {
+                  all_and_skuDiscount_cal  += (((item.data.price*rate_p)/100)*item.quantity);
+                }else{
+                  if(options?.nj_all_and_sku_login_user_discount_all_enable)
+                  {
+                   
+                    var toDay = new Date();
+                    var multi_start_date = new Date(options?.nj_all_and_sku_login_user_discount_all_start_date + ' 00:00:00');
+                    var multi_end_date = new Date(options?.nj_all_and_sku_login_user_discount_all_end_date + ' 23:59:59');
+                    if (multi_start_date <= toDay && toDay <= multi_end_date) {
+                      var validProductDis = all_and_sku_category(item.data, options);
+                      if (!validProductDis) {
+                        all_and_skuDiscount_cal  += (((item.data.price*options?.nj_all_and_sku_login_user_discount_all_rate)/100)*item.quantity);
+                      }
+                    }
+                  }
+                }
+              }
+              })
+            }
+            
+            cartSubTotalDiscountTmp.pall_and_skuDiscount = { name: 'Members discount', discount: all_and_skuDiscount_cal };;
+         
+    }else{
+      cartSubTotalDiscountTmp.pall_and_skuDiscount = '';
+    }
+     
+   } else {
+     //console.log(' vv tokenValid discount NOT');
+     cartSubTotalDiscountTmp.pall_and_skuDiscount = '';
    }
 
   setCartSubTotalDiscount({
@@ -505,6 +560,7 @@ export function get_discount_type_cart(cartItems, options, setCartSubTotalDiscou
     paymentMethodDiscount: cartSubTotalDiscountTmp.paymentMethodDiscount,
     membersOnlyDiscount: cartSubTotalDiscountTmp.membersOnlyDiscount,
     productMidweekDiscount: cartSubTotalDiscountTmp.productMidweekDiscount,
+    pall_and_skuDiscount: cartSubTotalDiscountTmp.pall_and_skuDiscount,
   });
 
   return discount_type_cart_quantity_cal + discount_type_cart_product_cal + paymentMethodDiscount_cal + membersOnlyDiscount_cal + productMidweekDiscount_cal;
@@ -587,38 +643,136 @@ export function getMemberOnlyProduct(options, product, messageText) {
 }
 
 
-// ProductMidweek
+// ProductMidweek single product  or box
 export function getProductMidweek(options, product) {
   const d = new Date();
   var weekday = d.getDay();
   var ProductMidweek = '';
+  var tmpProPrice = product.price;
+  var toDay = new Date();
+  var product_start_date = new Date(product?.meta_data?.product_start_date + ' 00:00:00');
+  var product_end_date = new Date(product?.meta_data?.product_end_date + ' 23:59:59');
+  var product_discount = product?.meta_data?.product_discount;
+  if (product_start_date <= toDay && toDay <= product_end_date && product_discount > 0) {
+    tmpProPrice = (tmpProPrice - ((tmpProPrice * product_discount) / 100));
+  }
   if(options.nj_product_select_week_day_week_day_deals.includes(weekday.toString()))
   {
     var validProductDis = validProductMidweek_category(product, options);
     if (!validProductDis) {
         var messageText = options?.nj_product_discount_label ?? '';
-          var tmpProPrice = product.price;
-          var toDay = new Date();
-          var product_start_date = new Date(product?.meta_data?.product_start_date + ' 00:00:00');
-          var product_end_date = new Date(product?.meta_data?.product_end_date + ' 23:59:59');
-          var product_discount = product?.meta_data?.product_discount;
-          if (product_start_date <= toDay && toDay <= product_end_date && product_discount > 0) {
-            tmpProPrice = (tmpProPrice - ((tmpProPrice * product_discount) / 100));
-          }
+          
           var ProductMidweekPrice = (tmpProPrice - ((options?.nj_product_rate_week_day_deals * tmpProPrice) / 100));
           ProductMidweekPrice = ProductMidweekPrice.toFixed(2);
           if (product.type == 'simple' || product.type == 'variation') {
             ProductMidweek = messageText.replace("NJSC_price", '$'+ProductMidweekPrice);
           } else {
-            ProductMidweek = messageText.replace("NJSC_price", '');
-            ProductMidweek = ProductMidweek.replace("$", '');
+            //ProductMidweek = messageText.replace("NJSC_price", '');
+            //ProductMidweek = ProductMidweek.replace("$", '');
           }
         }
   }
-  
+  if(ProductMidweek == '' && options?.nj_all_and_sku_login_user_discount_all_and_sku_enable)
+  {
+   // dddd
+      if(options?.nj_all_and_sku_login_user_discount_sku_enable)
+      {
+        var toDay = new Date();
+        var multi_start_date = new Date(options?.nj_all_and_sku_login_user_discount_sku_start_date + ' 00:00:00');
+        var multi_end_date = new Date(options?.nj_all_and_sku_login_user_discount_sku_end_date + ' 23:59:59');
+        if (multi_start_date <= toDay && toDay <= multi_end_date) {
+          var rate_p = get_all_and_sku_sku_rate(options,product.sku);
+          console.log('rate_p',rate_p);
+          console.log('product.sku',product.sku);
+          if (rate_p != '') {
+            var messageText = options?.nj_all_and_sku_login_user_discount_all_and_sku_text ?? '';
+           
+            var ProductMidweekPrice = (tmpProPrice - ((rate_p * tmpProPrice) / 100));
+            ProductMidweekPrice = ProductMidweekPrice.toFixed(2);
+            if (product.type == 'simple' || product.type == 'variation') {
+              ProductMidweek = messageText.replace("NJSC_price", '$'+ProductMidweekPrice);
+            } else {
+              //ProductMidweek = messageText.replace("NJSC_price", '');
+              //ProductMidweek = ProductMidweek.replace("$", '');
+            } 
+          }
+        }
+      }
+
+      if(ProductMidweek == '' && options?.nj_all_and_sku_login_user_discount_all_enable)
+      {
+        var toDay = new Date();
+        var multi_start_date = new Date(options?.nj_all_and_sku_login_user_discount_all_start_date + ' 00:00:00');
+        var multi_end_date = new Date(options?.nj_all_and_sku_login_user_discount_all_end_date + ' 23:59:59');
+        if (multi_start_date <= toDay && toDay <= multi_end_date) {
+          var validProductDis = all_and_sku_category(product, options);
+          if (!validProductDis) {
+            var messageText = options?.nj_all_and_sku_login_user_discount_all_and_sku_text ?? '';
+            var ProductMidweekPrice = (tmpProPrice - ((options?.nj_all_and_sku_login_user_discount_all_rate * tmpProPrice) / 100));
+            ProductMidweekPrice = ProductMidweekPrice.toFixed(2);
+            if (product.type == 'simple' || product.type == 'variation') {
+              ProductMidweek = messageText.replace("NJSC_price", '$'+ProductMidweekPrice);
+            } else {
+              //ProductMidweek = messageText.replace("NJSC_price", '');
+              //ProductMidweek = ProductMidweek.replace("$", '');
+            } 
+          }
+        }
+      }
+  }
   return ProductMidweek;
 }
 
+// Custom badge
+export function get_all_and_sku_sku_rate(options,sku) {
+  var rate_p = '';
+  if(options?.nj_all_and_sku_login_user_discount_multiple_sku_list_for_discount != undefined && options?.nj_all_and_sku_login_user_discount_multiple_sku_list_for_discount.length > 0)
+  {
+    options?.nj_all_and_sku_login_user_discount_multiple_sku_list_for_discount.map(item => {
+      if(item.sku != '')
+      {
+        const itemArr = item.sku.split(",");
+        const found = itemArr.find((element) => element == sku);
+        if(found != undefined)
+        {
+          rate_p = item.rate_p;
+        }
+      }
+    })
+  }
+  return rate_p;
+}
+
+// all_and_sku_category
+export function all_and_sku_category(data, options) {
+  var validProductDis = false;
+  var proCatIDs = [];
+  if (data?.category_ids != undefined) {
+    proCatIDs = data?.category_ids;
+  } else {
+    proCatIDs = data.categories;
+  }
+  //console.log('proCatIDs',proCatIDs);
+  if (proCatIDs != undefined && options?.nj_all_and_sku_login_user_discount_all_exclude_category_for_discount != undefined) {
+    if (options.nj_all_and_sku_login_user_discount_all_exclude_category_for_discount.length > 0) {
+      proCatIDs.map((proCatID) => {
+        // console.log('proCatID',proCatID);
+        if (proCatID.id == undefined) {
+          if (options.nj_all_and_sku_login_user_discount_all_exclude_category_for_discount.includes(proCatID) && (!validProductDis)) {
+            validProductDis = true;
+          }
+        } else {
+          if (options.nj_all_and_sku_login_user_discount_all_exclude_category_for_discount.includes(proCatID.id) && (!validProductDis)) {
+            validProductDis = true;
+          }
+        }
+
+      })
+    }
+
+  }
+  return validProductDis;
+}
 
 // validProductMidweek_category
 export function validProductMidweek_category(data, options) {
