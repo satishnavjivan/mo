@@ -543,7 +543,7 @@ export function get_discount_type_cart(cartItems, options, setCartSubTotalDiscou
             }
             
             cartSubTotalDiscountTmp.pall_and_skuDiscount = { name: 'Members discount', discount: all_and_skuDiscount_cal };;
-         
+            productMidweekDiscount_cal = all_and_skuDiscount_cal;
     }else{
       cartSubTotalDiscountTmp.pall_and_skuDiscount = '';
     }
