@@ -10,13 +10,19 @@
  import axios from 'axios';
  import Layout from '../../src/components/layout';
 import ProductsFilter from '../../src/components/products/products-filter';
+import { useEffect, useState } from 'react';
 
 
  export default function tag_slug({ headerFooter, products }) {
     //console.log('params',params);
-    //console.log('products',products);
-    
-    
+    //console.log('products web',products);
+    const options = headerFooter?.footer?.options;
+	const [tokenValid,setTokenValid]=useState(0);
+    useEffect(() => {
+		if(localStorage.getItem('token')) {
+			setTokenValid(1);
+        }
+	}, []);
     if(isEmpty(products))
     {
         return(
@@ -27,7 +33,7 @@ import ProductsFilter from '../../src/components/products/products-filter';
     }else{
         return (
             <Layout headerFooter={headerFooter || {}}>
-                <ProductsFilter products={products}/>
+                <ProductsFilter products={products} options={options} tokenValid={tokenValid}/>
             </Layout>
         )
     }

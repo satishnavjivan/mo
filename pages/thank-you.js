@@ -256,9 +256,11 @@ console.log('sessionData',sessionData);
 						{orderData != undefined?
 						<OrderDetails orderData={orderData} subtotal={subtotal} paymentModes={paymentModes}/>
 						:null}
+						<div className='text-center mt-5 mb-2'>
 						<Link href="/shop/">
-							<div className="bg-purple-600 text-white px-5 py-3 rounded-sm w-auto">Shop more</div>
+							<div className="bg-victoria-800 inline-block px-2 py-3 text-white text-center w-60 text-lg cursor-pointer">Shop more</div>
 						</Link>
+						</div>
 						<OrderAddress orderData={orderData} states={states} />
 						<div key='ReviewForm' className='border-collapse w-full border border-slate-300 p-2'>
 						<ReviewForm product={null} orderData={orderData} tokenValid={tokenValid} customerData={customerData}></ReviewForm>

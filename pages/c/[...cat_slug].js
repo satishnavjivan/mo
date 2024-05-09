@@ -37,7 +37,11 @@ export default function cat_slug({ headerFooter}) {
 
     const options = headerFooter?.footer?.options;
 	const [tokenValid,setTokenValid]=useState(0);
-
+    useEffect(() => {
+		if(localStorage.getItem('token')) {
+			setTokenValid(1);
+        }
+	}, []);
     useEffect(()=>{
         (async () => {
                     SetLoading(true);

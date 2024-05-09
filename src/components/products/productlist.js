@@ -10,6 +10,11 @@ import Gridtimer from './gridtimer';
 import WishlistButton from '../wishlist/wishlistbutton'
 import { WEB_DEVICE } from '../../utils/constants/endpoints';
 import { useEffect, useState } from 'react';
+import ratingstar1 from '../../../public/assets/img/ratingstar1.jpg';
+import ratingstar2 from '../../../public/assets/img/ratingstar2.jpg';
+import ratingstar3 from '../../../public/assets/img/ratingstar3.webp';
+import ratingstar4 from '../../../public/assets/img/ratingstar4.webp';
+import ratingstar5 from '../../../public/assets/img/ratingstar5.webp';
 
 const ProductList = ({ product, tokenValid, options, customerData, setCustomerData }) => {
 	if (isEmpty(product)) {
@@ -267,7 +272,34 @@ const ProductList = ({ product, tokenValid, options, customerData, setCustomerDa
 					})()}
 					<WishlistButton customerData={customerData} setCustomerData={setCustomerData} product={product} tokenValid={tokenValid} listing={false} />
 				</div>
-
+				
+				{(() => {
+					if(product?.average_rating && (product?.average_rating >= 1))
+					{
+						var average_rating =  parseInt(product?.average_rating)
+						var average_rating_img = '';
+						if(average_rating == 1){average_rating_img = ratingstar1}
+						if(average_rating == 2){average_rating_img = ratingstar2}
+						if(average_rating == 3){average_rating_img = ratingstar3}
+						if(average_rating == 4){average_rating_img = ratingstar4}
+						if(average_rating == 5){average_rating_img = ratingstar5}
+					}
+					if(average_rating > 0)
+					{
+						return (
+							<div className='addwish flex items-center justify-center  w-full p-2 border-t border-gray-200 gap-2 shop-box-rating'>
+							<Image
+								sourceUrl={average_rating_img}
+										altText={'ratingstar'}
+										title={'ratingstar'}
+										width="100"
+										height="20"
+									/>
+							</div>
+						)
+					}
+					
+				})()}
 				{
 					'external' === productType ?
 						<ExternalLink

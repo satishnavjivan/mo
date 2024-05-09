@@ -36,7 +36,7 @@ const Breadcrumbs = ({ pageData = '' }) => {
 	if (!breadcrumbs) {
 		return null;
 	}
-console.log('breadcrumbs',breadcrumbs);
+//console.log('breadcrumbs',breadcrumbs);
 	if (breadcrumbs[0]?.breadcrumb != '') {
 		return (
 			<nav aria-label="Breadcrumb" className="flex justify-center py-2 border-b border-victoria-100 font-jost">

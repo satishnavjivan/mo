@@ -516,10 +516,10 @@ export function get_discount_type_cart(cartItems, options, setCartSubTotalDiscou
               if (multi_start_date <= toDay && toDay <= multi_end_date) 
               {
                 var rate_p = get_all_and_sku_sku_rate(options,item.data.sku);
-                console.log('rate_p ==',rate_p);
-                console.log('item.data ==',item);
-                console.log('item.data.price ==',item.data.price);
-                console.log('item.quantity ==',item.quantity);
+                //console.log('rate_p ==',rate_p);
+                //console.log('item.data ==',item);
+                //console.log('item.data.price ==',item.data.price);
+                //console.log('item.quantity ==',item.quantity);
                 if(rate_p != '')
                 {
                   all_and_skuDiscount_cal  += (((item.data.price*rate_p)/100)*item.quantity);
@@ -682,8 +682,8 @@ export function getProductMidweek(options, product) {
         var multi_end_date = new Date(options?.nj_all_and_sku_login_user_discount_sku_end_date + ' 23:59:59');
         if (multi_start_date <= toDay && toDay <= multi_end_date) {
           var rate_p = get_all_and_sku_sku_rate(options,product.sku);
-          console.log('rate_p',rate_p);
-          console.log('product.sku',product.sku);
+          //console.log('rate_p',rate_p);
+          //console.log('product.sku',product.sku);
           if (rate_p != '') {
             var messageText = options?.nj_all_and_sku_login_user_discount_all_and_sku_text ?? '';
            

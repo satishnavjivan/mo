@@ -45,11 +45,11 @@ function subscribe_email() {
         } else {
             if (subscribe_email == '') {
                 setError('Email id required.');
-                var  el =  document.getElementById("subscribe_email");
+                var  el =  document.getElementById("subscribe_email_popup");
 				if(el){el.focus();}
             } else {
                 setError(subscribe_email +' is invalid.');
-                var  el =  document.getElementById("subscribe_email");
+                var  el =  document.getElementById("subscribe_email_popup");
 				if(el){el.focus();}
             }
         }
@@ -67,7 +67,7 @@ function subscribe_email() {
                 } else {
                 setError(e.target.value +' is invalid.');
                     }
-                var  el =  document.getElementById("subscribe_email");
+                var  el =  document.getElementById("subscribe_email_popup");
                 if (el) { el.focus(); }
                 setSuccess('');
             } else {
@@ -88,7 +88,7 @@ function subscribe_email() {
                         type={'text'}
                         className={`outline-none block w-full py-2 px-3 pe-20 text-base text-black border border-gray-300 focus:border-victoria-400`}
                         placeholder={'Enter your email'}
-                        id='subscribe_email'
+                        id='subscribe_email_popup'
                     />
                     {error && <div className="absolute bg-white px-3 text-red-500" dangerouslySetInnerHTML={createMarkup(error)} />}
                     {success && <div className="absolute bg-white px-3  text-green-500" dangerouslySetInnerHTML={createMarkup(success)} />}
