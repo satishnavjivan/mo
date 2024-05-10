@@ -16,7 +16,7 @@ function canvasTxtToImage({authorname}) {
             ctx.font = "50px serif";
             ctx.fillStyle = "#4e4a88";
             var parts =  authorname.toUpperCase().split(" ");
-            console.log('parts',parts);
+            //console.log('parts',parts);
             if(parts.length>1 && (!isEmpty(parts[1][0])))
             {
                 ctx.fillText(parts[0][0] +parts[1][0], 3, 41, 45);

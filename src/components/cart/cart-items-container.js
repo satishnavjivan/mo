@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { clearCart } from '../../utils/cart';
 import { getShipping, get_discount_bundle, get_discount_type_cart } from '../../utils/customjs/custome';
 
-import Loader from "./../../../public/loader.gif";
-;
 import { isEmpty } from 'lodash';
 import RedeemPoints from './redeem-points';
 import LoginForm from '../my-account/login';
@@ -143,7 +141,7 @@ const CartItemsContainer = ({ options }) => {
 			if (!isEmpty(result.couponData.used_by) && result.couponData.usage_limit_per_user) {
 				var customerDatastring = localStorage.getItem('customerData')
 				var customerData = {};
-				if (customerDatastring != undefined) {
+				if (customerDatastring != undefined && customerDatastring != '') {
 					customerData = JSON.parse(customerDatastring);
 				}
 				if (customerData.email != undefined) {
@@ -183,7 +181,7 @@ const CartItemsContainer = ({ options }) => {
 				response.error = "COUPON USAGE LIMIT HAS BEEN REACHED.";
 				response.success = false;
 			} else if (used_login) {
-				response.error = "PLEASE USAGE LOGIN.";
+				response.error = "PLEASE USAGE <a href='#id_loginuser' class='alink-color'> LOGIN </a>.";
 				response.success = false;
 			}
 			else {
@@ -429,7 +427,6 @@ const CartItemsContainer = ({ options }) => {
 	}
 	return (
 		<div className="cart-wrapper">
-			{loading && <img className="loader" src={Loader.src} alt="Loader" width={50} />}
 			{cart ? (
 				<div key="cart-left" className='space-y-5'>
 					<div className='grid grid-cols-1'>
@@ -490,9 +487,16 @@ const CartItemsContainer = ({ options }) => {
 									placeholder='Coupon Code'
 									className="outline-none p-2 text-sm border border-gray-300  focus:border-victoria-400">
 								</input>
-								<button onClick={validCoupon} className='h-[38px] w-32 px-2 text-white bg-victoria-700 duration-500 text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>Apply coupon</button>
+								<button onClick={validCoupon} className='h-[38px] w-32 px-2 text-white bg-victoria-700 duration-500 text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>
+								{loading ? <Loaderspin /> : 'Apply coupon'}
+								</button>
 								<div className='block mt-3'>
-									<span className='text-red-600'>{couponCodeResTmp.error}</span>
+									<span key="couponCodeResTmp-error"
+										dangerouslySetInnerHTML={{
+											__html: couponCodeResTmp.error,
+										}}
+										className="text-red-600"
+									/>
 									{couponCodeResTmp.success ?
 										<>
 											<span className='text-green-600'> Applied</span>
@@ -516,8 +520,10 @@ const CartItemsContainer = ({ options }) => {
 								/>
 								<button
 									onClick={shippingCalculation}
-									className='absolute right-0 h-[38px] px-3 text-white bg-victoria-700 duration-500 text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>
-									Calculate
+									className='absolute right-0 h-[38px] w-32 px-2 text-white bg-victoria-700 duration-500 text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'
+									>
+									{inputshipdisabled? <Loaderspin /> : 'Calculate'}
+									
 								</button>
 							</div>
 						</div>

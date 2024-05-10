@@ -115,7 +115,7 @@ function LoginForm({ setTokenValid, tokenValid, setCustomerData }) {
 
     return (
         <React.Fragment>
-            <div className='mb-3'>
+            <div className='mb-3' id="id_loginuser">
                 {error && <div className="text-red-500" dangerouslySetInnerHTML={createMarkup(error)} />}
                 <form onSubmit={handleSubmit_l(onFormSubmitLogin)}>
                     <label className="block mb-4">

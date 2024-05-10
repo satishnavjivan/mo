@@ -83,7 +83,7 @@ export default function Product( { headerFooter } ) {
         )
     }
 	else {
-		console.log('reviews', reviews);
+		//console.log('reviews', reviews);
 		//console.log('average', average);
 		//console.log('approve_review_count', approve_review_count);
 		return (
