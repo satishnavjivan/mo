@@ -737,7 +737,7 @@ const ProductsFilter = ({ products, options, tokenValid }) => {
 									<div className="border-t border-gray-200 px-3 py-2">
 										{Object.keys(attr_count_data_final_list['categories']).length > 5 ?
 											<>
-												<input type="text" placeholder="Search Category" onKeyUp={side_bar_li_search} data-inputulclassName="li_search_res_cat" className='outline-none block w-full py-2 px-3 text-base text-gray-900 border border-gray-300 focus:border-victoria-400 mb-3' />
+												<input type="text" placeholder="Search Category" onKeyUp={side_bar_li_search} data-inputulclass="li_search_res_cat" className='outline-none block w-full py-2 px-3 text-base text-gray-900 border border-gray-300 focus:border-victoria-400 mb-3' />
 											</> : null
 										}
 										{
@@ -900,7 +900,7 @@ const ProductsFilter = ({ products, options, tokenValid }) => {
 															type="text"
 															placeholder="Search Tag"
 															onKeyUp={side_bar_li_search}
-															data-inputulclassName="li_search_res_tag"
+															data-inputulclass="li_search_res_tag"
 															className='outline-none block w-full py-2 px-3 text-base text-gray-900 border border-gray-300  focus:border-victoria-400 mb-2'
 														/>
 													</> : null

@@ -392,7 +392,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 		}, [Object.keys(router.query).length > 1]);
 	}
 	return Object.keys(product).length ? (
-		<div className="single-product container mx-auto my-10 p-0">
+		<div className={`single-product container mx-auto my-10 p-0 pro_id_${product.id}`}>
 			<div key='top-banner' className='text-center my-5'>
 				{top_banner?.length ?
 					top_banner?.map(banner => {
