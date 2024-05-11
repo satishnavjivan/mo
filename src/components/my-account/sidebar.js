@@ -13,6 +13,7 @@ import icon8 from '../../../public/assets/img/my-account/8track.png';
 import icon9 from '../../../public/assets/img/my-account/9faq.png';
 import icon10 from '../../../public/assets/img/my-account/10logout.png';
 import { useState } from 'react';
+import jQuery from "jquery";
 
 function Sidebar({ setTokenValid, setIsMyaccountOpen, isMyaccountOpen }) {
     //function logout
@@ -28,6 +29,7 @@ function Sidebar({ setTokenValid, setIsMyaccountOpen, isMyaccountOpen }) {
         } else {
             setTokenValid(0);
         }
+        jQuery('#header_top_login_logout').text('Sign In');
     };
     const closeMyaccount = () => {
         setIsMyaccountOpen(false);

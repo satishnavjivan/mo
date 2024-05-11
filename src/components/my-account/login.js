@@ -9,7 +9,8 @@ import axios from 'axios';
 import { USER_LOGIN } from '../../utils/constants/endpoints';
 import { Link } from '@mui/material';
 import { CAPTCHA_SITE_KEY, USER_REGIS } from '../../utils/constants/endpoints';
-import ReCAPTCHA from "react-google-recaptcha"
+import ReCAPTCHA from "react-google-recaptcha";
+import jQuery from "jquery";
 
 
 function LoginForm({ setTokenValid, tokenValid, setCustomerData }) {
@@ -91,6 +92,7 @@ function LoginForm({ setTokenValid, tokenValid, setCustomerData }) {
             })
             setTokenValid(1);
             reset_l();
+            jQuery('#header_top_login_logout').text('Log Out');
         }
 
 
