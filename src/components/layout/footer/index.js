@@ -370,6 +370,7 @@ const Footer = ({ footer, header }) => {
 					</div>
 				)}
 			</section>
+			<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=acdd0ff7-108c-4d64-9155-dd4c437e3957"> </script>
 		</>
 	);
 };

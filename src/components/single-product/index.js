@@ -131,14 +131,14 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 			// API shipping get
 			var shippingMessage = '';
 			if (shippingCharge_res < 0) {
-				shippingMessage = '<span "failed">Delivery Not Available to ' + postcode + '</span>';
+				shippingMessage = '<span class="failed text-red-600">Delivery Not Available to ' + postcode + '</span>';
 			} else if (shippingCharge_res == 0) {
-				shippingMessage = '<span "success">Free Shipping to ' + postcode + '</span>';
+				shippingMessage = '<span class="success text-green-600">Free Shipping to ' + postcode + '</span>';
 			} else {
-				shippingMessage = '<span "success">$' + shippingCharge_res + ' Shipping charge to ' + postcode + '</span>';
+				shippingMessage = '<span class="success text-green-600">$' + shippingCharge_res + ' Shipping charge to ' + postcode + '</span>';
 			}
 			if (product_code == 'LP') {
-				shippingMessage = '<span "success">This product will not be shipped.(Its for pick up only)</span>';
+				shippingMessage = '<span class="success text-green-600">This product will not be shipped.(Its for pick up only)</span>';
 			}
 			setShippingCharge(shippingMessage);
 

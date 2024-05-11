@@ -88,8 +88,19 @@ function Search({ search, resultsShow, setResultsShow }) {
     const submitSearch = () => {
        // console.log('input', input);
     }
+
+    const cat_call_event = () => {
+        setResultsShow(false)
+     }
+
+    
     //console.log('results', results);
     //console.log('resultsCat', resultsCat);
+
+    useEffect(() => {
+        document.getElementById("top_search_input").focus();
+    }, [resultsShow])
+    
     return (
         <div key="searchsection" className=''>
             <div className="relative overflow-hidden rounded md:block hidden" >
@@ -114,7 +125,7 @@ function Search({ search, resultsShow, setResultsShow }) {
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" placeholder='Please Search here' minLength={3} value={input} onChange={(e) => handleChange(e.target.value)} className="outline-none block w-full p-3 pr-12 text-sm text-gray-900 border border-gray-300 focus:border-victoria-400" />
+                    <input type="search" id="top_search_input" placeholder='Please Search here' minLength={3} value={input} onChange={(e) => handleChange(e.target.value)} className="outline-none block w-full p-3 pr-12 text-sm text-gray-900 border border-gray-300 focus:border-victoria-400" />
                 </div>
                 
                 {(() => {
@@ -137,7 +148,7 @@ function Search({ search, resultsShow, setResultsShow }) {
                                                     var cat_url = getPathNameFromUrl(cat?.url ?? '');
                                                     return (
                                                         <li key={i}>
-                                                            <Link href={!WEB_DEVICE ? '/cat?sname=' + cat_url.split('/').slice(-2, -1)[0] : '/c' + cat_url} className='product_cat border-b border-grey-100 py-1 px-2 w-full inline-block capitalize hover:text-victoria-600' result={cat.title} key={i}>
+                                                            <Link onClick={cat_call_event} href={!WEB_DEVICE ? '/cat?sname=' + cat_url.split('/').slice(-2, -1)[0] : '/c' + cat_url} className='product_cat border-b border-grey-100 py-1 px-2 w-full inline-block capitalize hover:text-victoria-600' result={cat.title} key={i}>
                                                                 {cat.title}
                                                             </Link>
                                                         </li>
@@ -148,7 +159,7 @@ function Search({ search, resultsShow, setResultsShow }) {
                                     </ul>
                                 </div>
                                 <div className='result_product col-span-3'>
-                                    <h3 className='font-semibold mb-2'>Products : {results.products ? results.products.length : ''}</h3>
+                                    <h3 className='font-semibold mb-2 bg-white border-s-2 pl-0.5 '>Products : {results.products ? results.products.length : ''}</h3>
                                     <ul className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 overflow-y-auto h-[calc(100vh_-_315px)] theme-scroll'>
                                         {
                                             results.products ?
@@ -161,7 +172,7 @@ function Search({ search, resultsShow, setResultsShow }) {
                                                     }
                                                     return (
                                                         <li key={id} className='border border-gray-200 p-1'>
-                                                            <Link href={p_slug} className='products'>
+                                                            <Link  onClick={cat_call_event}  href={p_slug} className='products'>
                                                                 <Image
                                                                     src={result.image ? result.image : placeholder}
                                                                     alt={result.title}
@@ -185,7 +196,7 @@ function Search({ search, resultsShow, setResultsShow }) {
                     
                 
             </div>
-        </div >
+        </div>
     )
 }
 export default Search;

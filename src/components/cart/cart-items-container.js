@@ -45,6 +45,8 @@ const CartItemsContainer = ({ options }) => {
 
 	// Bundle disount 
 	const [discountBundleDis, setDiscountBundleDis] = useState(0);
+	
+	const [loginform, setLoginform] = useState(false);
 
 	// Clear the entire cart.
 	const handleClearCart = async (event) => {
@@ -469,6 +471,37 @@ const CartItemsContainer = ({ options }) => {
 							</div>
 						</div>
 					</div>
+						{!tokenValid ?
+							<div key='setguestcheckout' className=' text-center'>
+										<button
+											className='bg-victoria-800 inline-block px-2 py-2 text-white text-center w-60 text-lg cursor-pointer '
+											onClick={() => {
+												loginform ? setLoginform(false) : setLoginform(true)
+											}}>
+											{loginform ? 'Continue as guest':'Click to Login'}
+										</button>
+							</div> 
+						: null}
+					
+						{tokenValid ? 
+							<div className='border border-gray-200 p-3 rounded max-w-2xl mx-auto'>
+						<RedeemPoints
+							customerData={customerData}
+							setCoutData={setCoutData}
+							totalPrice={totalPrice}
+							coutData={coutData}
+							redeem_your_pointsText={redeem_your_pointsText}
+							setRedeem_your_pointsText={setRedeem_your_pointsText}
+							messageRyp={messageRyp}
+							setMessageRyp={setMessageRyp}
+						></RedeemPoints> </div>: null}
+						{
+							!tokenValid && loginform ? 
+							<div className='border border-gray-200 p-3 rounded max-w-2xl mx-auto'>
+							<LoginForm setTokenValid={setTokenValid} setCustomerData={setCustomerData}></LoginForm> 
+							</div>
+							: null}
+					
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
 						<div key="calculat-shipping" className='border border-gray-300 p-3 h-fit'>
 							<div key="coupon" className='border-b border-gray-300 py-2 pb-5 mb-5 flex gap-2 flex-wrap'>
@@ -619,7 +652,7 @@ const CartItemsContainer = ({ options }) => {
 							{cartError?.redeemPrice ? <div className="invalid-feedback d-block text-red-500">{cartError.redeemPrice}</div> : null}
 							<div className="sm:flex item-center justify-between mt-4 space-y-2 sm:space-y-0">
 								{/*Clear entire cart*/}
-								<div className="clear-cart">
+								{/*}<div className="clear-cart">
 									<button
 										className='inline-block w-32 p-2 text-white bg-victoria-700 duration-500 font-medium text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'
 										onClick={(event) => handleClearCart(event)}
@@ -632,30 +665,19 @@ const CartItemsContainer = ({ options }) => {
 										}
 									</button>
 								</div>
+								{*/}
 								{/*Checkout*/}
 								{/*}<Link href="/checkout">{*/}
 								<button
 									onClick={cartSubmit}
-									className='inline-block w-52 p-2 text-white bg-victoria-700 duration-500 font-medium text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>
+									className='inline-block w-full p-2 text-white bg-victoria-700 duration-500 font-medium text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>
 									Proceed to Checkout
 								</button>
 								{/*}</Link>{*/}
 							</div>
 						</div>
 					</div>
-					<div className='border border-gray-200 p-3 rounded max-w-2xl mx-auto'>
-						{tokenValid ? <RedeemPoints
-							customerData={customerData}
-							setCoutData={setCoutData}
-							totalPrice={totalPrice}
-							coutData={coutData}
-							redeem_your_pointsText={redeem_your_pointsText}
-							setRedeem_your_pointsText={setRedeem_your_pointsText}
-							messageRyp={messageRyp}
-							setMessageRyp={setMessageRyp}
-						></RedeemPoints> : null}
-						{!tokenValid ? <LoginForm setTokenValid={setTokenValid} setCustomerData={setCustomerData}></LoginForm> : null}
-					</div>
+					
 				</div>
 			) : (
 				<div className="mt-14 text-center">

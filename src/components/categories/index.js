@@ -36,7 +36,7 @@ const Categories = ({ categories }) => {
 								className={`relative${categorylayout === 'categoryBox' ? ' border border-victoria-400 p-2 pb-0 hover:bg-chelsea-100' : ''}`}
 							>
 								<div className={`sub-category${categorylayout === 'categoryBox' ? '' : ' flex items-center gap-3'}`}>
-									<div className={`sub-category${categorylayout === 'categoryBox' ? '' : ' rounded border border-violet-700 overflow-hidden mb-4'}`}>
+									<div className={`sub-category${categorylayout === 'categoryBox' ? '' : ' rounded border border-teal-700 overflow-hidden mb-4'}`}>
 										{category.category_thumb ? (
 											<Link href={`${cat_slug}`}>
 											<Image
@@ -59,7 +59,12 @@ const Categories = ({ categories }) => {
 									</div>
 									<h6 className='font-medium p-2 flex items-center justify-between'>
 										<Link href={`${cat_slug}`}>
-											{category?.name ?? ''} ({category?.cat_count})
+										<div key="cat_title"
+											dangerouslySetInnerHTML={{
+												__html: category?.name ?? '',
+											}}
+										/>
+										({category?.cat_count})
 										</Link>
 
 										{categories.some(cat => cat.parent === category.term_id) && categorylayout === 'categoryBox' && ( // Check if subcategories exist
@@ -90,7 +95,12 @@ const Categories = ({ categories }) => {
 																	className={`${categorylayout === 'categoryBox' ? 'border border-victoria-700 mb-2 last:mb-0 rounded' : 'shadow-full p-2'}`}
 																>
 																	<Link href={`${cat_slug}`} className={`${categorylayout === 'categoryBox' ? 'py-1 px-2 inline-block w-full' : 'text-victoria-700 font-bold'}`}>
-																		{category_inn?.name ?? ''}
+																		
+																			<div key="cat_title"
+																				dangerouslySetInnerHTML={{
+																					__html: category_inn?.name ?? '',
+																				}}
+																			/>
 																	</Link>
 																	{(() => {
 																		const thirdLevelCategories = categories.filter(function (element) {
@@ -116,7 +126,11 @@ const Categories = ({ categories }) => {
 																											{categorylayout === 'categoryList' ? (
 																												<i className="fa-light fa-arrow-right"></i>
 																											) : null}
-																											<span>{category_inn3?.name ?? ''}</span>
+																											<span key="cat_title"
+																												dangerouslySetInnerHTML={{
+																													__html: category_inn3?.name ?? '',
+																												}}
+																											/>
 																										</Link>
 																									</li>
 																								</>);
