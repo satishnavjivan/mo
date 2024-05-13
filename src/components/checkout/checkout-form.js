@@ -23,7 +23,7 @@ import axios from 'axios';
 import { CHECKOUT_API_CALL_LIMIT, CHECKOUT_API_TIME_INT, SUBURB_API_URL, WEB_DEVICE } from '../../utils/constants/endpoints';
 import { debounce, isEmpty } from 'lodash';
 import TextArea from './form-elements/textarea-field';
-import { get_customer, handleCreateCustomer } from '../../utils/customer';
+import { get_customer, handleCreateCustomer, handleUpdateCustomer } from '../../utils/customer';
 import InputField from './form-elements/input-field';
 import LoginForm from '../my-account/login';
 import { fieldFocusSet } from './field-focus';
@@ -235,9 +235,19 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 			if (!createAccountData.success) {
 				return null;
 			}
-			console.log('createAccountData', createAccountData);
+			//console.log('createAccountData', createAccountData);
 		}
 
+		// Create account 
+		if (tokenValid) {
+			if(customerData?.id != undefined && customerData?.billing?.address1 == '')
+				{
+					await handleUpdateCustomer(input,customerData?.id);
+					const updateAccountData	= await get_customer(customerData.email, setCustomerData);
+					console.log('input   sss', input);
+					console.log('updateAccountData sss', updateAccountData);
+				}
+		}
 		// For stripe payment mode, handle the strip payment and thank you.
 		if ('stripe' === input.paymentMethod) {
 			const createdOrderData = await handleStripeCheckout(

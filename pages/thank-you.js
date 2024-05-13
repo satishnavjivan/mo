@@ -86,6 +86,7 @@ const ThankYouContent = ({headerFooter,states}) => {
 console.log('sessionData',sessionData);
 //console.log('Router',Router.asPath);
 	const getOrderData = async(id) => {
+		localStorage.setItem('coutData', '');
 		let data = '';
 		var tmpsubtotal = 0;
 		const response = await get_order(id);

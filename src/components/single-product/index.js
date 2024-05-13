@@ -317,6 +317,11 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 				}
 			}
 		}
+		$(".attribut_drop").each(function () {
+			if ($(this).val() == '') {
+				setVariableProduct(true);
+			}
+		});
 
 	}
 	console.log('variableProduct', variableProduct);
@@ -326,6 +331,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 		});
 		setProduct(singleProduct);
 		setAtt_selected('');
+		setVariableProduct(true);
 	}
 	console.log('variation product ', product);
 	console.log('membersonly product ', membersonly);

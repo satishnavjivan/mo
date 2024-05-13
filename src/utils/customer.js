@@ -1,4 +1,4 @@
-import { createCustomers, getCustomers } from "./apiFun/customer";
+import { createCustomers, getCustomers, updateCustomers } from "./apiFun/customer";
 
 /* Get customer data */
 export const get_customer = async(arg_user_email,setCustomerData)=>
@@ -47,13 +47,50 @@ export const handleCreateCustomer = async(input) => {
 			  };
 			   console.log('userData',userData);
 
-			   const response = await createCustomers();
+			   const response = await createCustomers(userData);
 			   if(response.success)
 			   {
 				responseCus.success = true;
 				responseCus.customers = response.data;
 			   }else{
-				responseCus.error = error.response.data.error;
+				responseCus.error = response.error;
 			   }
 			return responseCus;
+}
+
+
+export const handleUpdateCustomer = async(input,user_id) => {
+	let responseCus = {
+		success: false,
+		customers: null,
+		error: '',
+	};
+	const userData = {
+		id:user_id,
+		billing: {
+			...input.billing,
+			first_name: input.billing.firstName,
+			last_name: input.billing.lastName,
+			address_1: input.billing.address1,
+			address_2: input.billing.address2,
+		},
+		shipping: {
+			...input.shipping,
+			first_name: input.shipping.firstName,
+			last_name: input.shipping.lastName,
+			address_1: input.shipping.address1,
+			address_2: input.shipping.address2,
+		},
+	  };
+	   console.log('userData',userData);
+
+	   const response = await updateCustomers(userData);
+	   if(response.success)
+	   {
+		responseCus.success = true;
+		responseCus.customers = response.data;
+	   }else{
+		responseCus.error = response.error;
+	   }
+	return responseCus;
 }

@@ -17,17 +17,20 @@ export const createCustomers = async ( dataUser ) => {
       };
   await axios.request(config)	
 	.then((response) => {
-				console.log(response.data);
+				console.log('create User ',response.data);
 				responseData.success = true;
 				responseData.customers = response.data;
-			
-				return responseData ;
-			  })
-			  .catch((error) => {
-				console.log(error.response.data);
+				
+				//return responseData ;
+			})
+			.catch((error) => {
+				console.log('create err ', error.response.data);
 				responseData.error = error.response.data;
-				return responseData ;
-			  });
+				//return responseData ;
+			});
+
+	console.log('create responseData ',responseData);
+	return responseData;
 }
 // Get curomer
 export const getCustomers = async ( email ) => {
