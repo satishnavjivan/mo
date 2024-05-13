@@ -17,6 +17,7 @@ import { getStates } from '../src/utils/checkout';
 import { get_order, update_order } from '../src/utils/apiFun/order';
 import { updateCustomers } from '../src/utils/apiFun/customer';
 import ReviewForm from '../src/components/review-form'
+import { viewCart } from '../src/utils/cart';
 
 const ThankYouContent = ({headerFooter,states}) => {
 	const [ cart, setCart ] = useContext( AppContext );
@@ -35,6 +36,7 @@ const ThankYouContent = ({headerFooter,states}) => {
 	const paymentModes = headerFooter?.footer?.options?.nj_payment_method ?? '';
 	const [tokenValid, setTokenValid] = useState(0);
 	const [customerData, setCustomerData] = useState(0);
+	const [loading, setLoading] = useState(false);
 	
 	// stripe
 	useEffect( () => {
@@ -83,10 +85,14 @@ const ThankYouContent = ({headerFooter,states}) => {
 		getOrderData(586218);
 		
 	},[]);*/
+
+	useEffect( () => {
+		viewCart(setCart, setLoading);
+	},[]);
+	
 console.log('sessionData',sessionData);
 //console.log('Router',Router.asPath);
 	const getOrderData = async(id) => {
-		localStorage.setItem('coutData', '');
 		let data = '';
 		var tmpsubtotal = 0;
 		const response = await get_order(id);

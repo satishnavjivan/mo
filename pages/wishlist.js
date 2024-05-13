@@ -175,7 +175,7 @@ export default function Home({ headerFooter }) {
                     </> :
                     <>
                         {(() => {
-                            if (customerWishlist == null) {
+                            if (customerWishlist == null || isEmpty(customerWishlist)) {
                                 return (
                                     <div className='text-center'>
                                         <Link href="/shop/" className='inline-block p-3 text-white bg-victoria-700 duration-500 font-medium text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>Add Product To Wishlist</Link>
