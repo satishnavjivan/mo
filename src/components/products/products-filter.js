@@ -358,9 +358,10 @@ const ProductsFilter = ({ products, options, tokenValid }) => {
 																	setFilter_option({ ...filter_option, categories: [catarr] });
 																	setItemOffset(0);
 																}}
-															>
-																{cat_data[key].name}
-															</span>
+																dangerouslySetInnerHTML={{
+																	__html: cat_data[key].name,
+																}}
+															/>
 															<span className='absolute top-0 right-0'>({cat_data[key].cat_count})</span>
 															{get_categories_dis(cat_data[key]['children'])}
 														</li>

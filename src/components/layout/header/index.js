@@ -139,7 +139,7 @@ const Header = ({ header, footer }) => {
 										</div>
 									</Link>
 								</li>
-								<li className='list-none relative me-3 xl:m-0'>
+								<li className={`list-none relative me-3 xl:m-0 ${router?.pathname == '/checkout' ? 'hidden' : null }`}>
 									<button onClick={toggleSidebar} className='flex items-center hover:text-victoria-800'>
 										<div className='icon size-11 sm:size-12 border border-victoria-800 rounded flex items-center justify-center hover:bg-victoria-800 hover:text-white'>
 											<i className="fa-light fa-cart-shopping text-2xl"></i>
