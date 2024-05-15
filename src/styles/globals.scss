@@ -501,6 +501,58 @@ $primary: #7dbbb6;
     min-height: 145px;
 }
 
+//  sale css
+.header-sale-text a {
+    z-index: 1;
+    padding: 10px 20px !important;
+    line-height: 14px;
+    width: fit-content;
+    border-radius: 4px;
+    position: relative;
+    color: #fff;
+    font-size: 17px;
+    margin: 0;
+    display: inline-block;
+    padding: 12px 0;
+    text-decoration: none;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+.header-sale-text a:before,
+.header-sale-text a:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #03A9F4,#E91E63, #ff0000, #fb0094,
+        #0000ff, #3F51B5,#ffff00, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 20s linear infinite;
+    border-radius: 4px;
+}
+.header-sale-text a:after {
+    filter: blur(10px);
+}
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+.ace-responsive-menu>li.current_page_item.header-sale-text a:before,
+.ace-responsive-menu>li.header-sale-text a:hover:before {
+    opacity: 0;
+}
+
 
 //Responsive Start
 @media only screen and (min-width: 768px) {

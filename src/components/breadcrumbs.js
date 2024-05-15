@@ -63,9 +63,11 @@ const Breadcrumbs = ({ pageData = '' }) => {
 							})()}   
 							<li key={breadcrumb.href} className="relative flex items-center">
 								<i className="fa-regular fa-angle-right text-xl"></i>
-								<Link href={breadcrumb.href.split("?")[0]} className="flex h-10 items-center px-5 text-sm font-medium transition hover:text-victoria-800">
-									{convertBreadcrumb(breadcrumb.breadcrumb.split("?")[0].split("#")[0])}
-								</Link>
+								<Link href={breadcrumb.href.split("?")[0]} className="flex h-10 items-center px-5 text-sm font-medium transition hover:text-victoria-800"
+												dangerouslySetInnerHTML={{
+												__html: convertBreadcrumb(breadcrumb.breadcrumb.split("?")[0].split("#")[0]),
+												}}
+								/>
 							</li>
 							</>
 						);

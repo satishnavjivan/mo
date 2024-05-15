@@ -30,6 +30,11 @@ const Header = ({ header, footer }) => {
 
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const toggleSidebar = () => {
+		if(router?.pathname == '/checkout')
+			{
+				//Router.push("/cart/");
+				//return '';
+			}
 		setIsSidebarOpen(!isSidebarOpen);
 		document.body.style.overflow = 'hidden';
 	};
@@ -139,7 +144,7 @@ const Header = ({ header, footer }) => {
 										</div>
 									</Link>
 								</li>
-								<li className={`list-none relative me-3 xl:m-0 ${router?.pathname == '/checkout' ? 'hidden' : null }`}>
+								<li className={`list-none relative me-3 xl:m-0 ${router?.pathname == '/checkout' ? 'hidden1' : null }`}>
 									<button onClick={toggleSidebar} className='flex items-center hover:text-victoria-800'>
 										<div className='icon size-11 sm:size-12 border border-victoria-800 rounded flex items-center justify-center hover:bg-victoria-800 hover:text-white'>
 											<i className="fa-light fa-cart-shopping text-2xl"></i>
@@ -177,6 +182,7 @@ const Header = ({ header, footer }) => {
 														setCart={setCart}
 														notice={notice != '' ? notice.find((element) => element == item?.data?.sku) : null}
 														postcodedis={postcodedis}
+														setIsSidebarOpen = {setIsSidebarOpen}
 													//cartNote = {cartSubTotalDiscount?.discount_type_cart_quantity?.cartNote ?? null}
 													/>
 												))}
@@ -243,6 +249,10 @@ const Header = ({ header, footer }) => {
 									var clsActive = '';
 									if (menu_slug == pageslug) {
 										clsActive = 'bg-chelsea-500 before:content-[" "] before:w-[80%] before:h-[2px] before:absolute before:top-0 before:left-0 before:right-0 before:mx-auto before:bg-victoria-800';
+									}
+									if(menuItem.title == 'Sale')
+									{
+										clsActive += ' header-sale-text';
 									}
 									return (
 										<li className={'inline-block relative hover:before:content-[" "] hover:before:w-[80%] hover:before:h-[2px] hover:before:absolute hover:before:top-0 hover:before:left-0 hover:before:right-0 hover:before:mx-auto hover:before:bg-victoria-800 ' + clsActive}>

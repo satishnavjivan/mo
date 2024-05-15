@@ -15,7 +15,8 @@ const CartItem = ({
 	notice,
 	postcodedis,
 	cartNote,
-	miniCart = false
+	miniCart = false,
+	setIsSidebarOpen
 }) => {
 	const [productCount, setProductCount] = useState(item.quantity);
 	const [updatingProduct, setUpdatingProduct] = useState(false);
@@ -34,6 +35,11 @@ const CartItem = ({
 			}
 		});
 	}
+
+	const closeSidebar = () => {
+		setIsSidebarOpen(false);
+		document.body.style.overflow = 'auto';
+	};
 
 	//console.log('item itemNote',itemNote);
 	/**
@@ -166,7 +172,7 @@ const CartItem = ({
 				/>
 			</figure>
 			<div className="flex flex-col justify-between items-start gap-1 pe-10">
-				<Link href={p_slug}>
+				<Link href={p_slug} onClick={closeSidebar}> 
 					<h5 className="cart-product-title text-brand-orange">{item?.data?.name}</h5>
 				</Link>
 

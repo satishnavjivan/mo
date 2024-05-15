@@ -31,6 +31,11 @@ const AddToCart = ({ product, productCountQty, singleProduct = false }) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		setAddcartMsg('');
+		setIsAddedToCart(false);
+	}, [product]);
+console.log('ooooo');
 	//console.log('singleProduct', singleProduct);
 	return (
 		<>

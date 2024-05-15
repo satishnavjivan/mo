@@ -36,12 +36,13 @@ import bronze from '../../../public/assets/img/bronze.webp';
 import silver from '../../../public/assets/img/silver.webp';
 import gold from '../../../public/assets/img/gold.webp';
 import platinum from '../../../public/assets/img/platinum.webp';
+import Stock_alert from '../../components/stock-alert'
 
 
 
 const SingleProduct = ({ singleProduct, reviews, options }) => {
 	const [product, setProduct] = useState(singleProduct);
-	const { attributes_new } = singleProduct;
+	const { attributes_new ,id} = singleProduct;
 	const paymentOptions = options?.payments;
 	const { top_banner, footer_banner } = options ?? '';
 	const [timer, setTimer] = useState(0);
@@ -171,7 +172,8 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 			}
 		})
 	}, [customerData]);
-	console.log('mem_level', mem_level);
+	//console.log('mem_level', mem_level);
+	console.log('main oriduct id ', id);
 	
 	
 	// Dicount timer
@@ -241,7 +243,7 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 			setTimer(0);
 			setCashback((Math.round((product.price)) * membership_benefits[mem_level][0])/100);
 			setCashbackpoints((Math.round((product.price)) * membership_benefits[mem_level][0]));
-			console.log('f s ',(Math.round((product.price)) * membership_benefits[mem_level][0]));
+			//console.log('f s ',(Math.round((product.price)) * membership_benefits[mem_level][0]));
 		}
 		setProductCountQty(1);
 		setShippingCharge('<span>Calculate Shipping</span>');
@@ -334,8 +336,8 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 		setVariableProduct(true);
 	}
 	console.log('variation product ', product);
-	console.log('membersonly product ', membersonly);
-	console.log('productMidweek product ', productMidweek);
+	//console.log('membersonly product ', membersonly);
+	//console.log('productMidweek product ', productMidweek);
 
 	// Nested Accordion
 	const [accordionOpen, setAccordionOpen] = useState([]);
@@ -554,20 +556,12 @@ const SingleProduct = ({ singleProduct, reviews, options }) => {
 					
 					{(() => {
 						if (product.type == 'simple' || product.type == 'variation') {
+							var variation_id = 0; 
+							if(product.type == 'variation') {variation_id = product.id}
 							if (product.stock_quantity < 1) {
 								return (
-									<div>
-										<p className='text-red-600 mb-3'>Get an alert when the product is in stock:</p>
-										<div className='relative mb-3'>
-											<input
-												type="text"
-												placeholder="Enter Email"
-												className='outline-none block w-full py-2 px-3 pr-28 text-base text-gray-900 border border-gray-300  focus:border-victoria-400'
-											/>
-											<button className='bg-red-600 text-base text-white p-2 text-center cursor-pointer absolute top-0 right-0 h-[42px]'>Get an alert</button>
-										</div>
-									</div>
-								)
+									<Stock_alert product_id={id} variation_id={variation_id}></Stock_alert>
+										)
 							}
 						}
 					})()}

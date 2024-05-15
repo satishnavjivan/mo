@@ -31,6 +31,7 @@ import PaypalButtonCheckout from './paypal/paypal-button';
 import CancelOrderButton from './cancel-order';
 import Router from 'next/router';
 import { get_order } from '../../utils/apiFun/order';
+import Link from 'next/link';
 
 // Use this for testing purposes, so you dont have to fill the checkout form over an over again.
 // const defaultCustomerInfo = {
@@ -948,6 +949,16 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 				{(() => {
 					if (!WEB_DEVICE) {
 						return ('Pease wait..')
+					}else{
+						return (
+							<div className="mt-14 text-center">
+								<h2 className='relative pb-2 text-center font-jost text-2xl md:text-3xl lg:text-4xl font-semibold mb-5'>No items in the cart</h2>
+								<Link href="/" className='inline-block w-52 p-3 text-white bg-victoria-700 duration-500 font-medium text-center hover:bg-white border hover:text-victoria-700 border-victoria-700'>
+									Add New Products
+									<i className="fa fa-long-arrow-alt-right ms-5" />
+								</Link>
+							</div>
+						)
 					}
 				})()}
 			</>}
