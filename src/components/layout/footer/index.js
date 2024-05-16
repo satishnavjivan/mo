@@ -357,11 +357,11 @@ const Footer = ({ footer, header }) => {
 								</svg>
 							</button>
 							<h3 className="pb-2 text-xl font-bold text-dark sm:text-2xl">
-							<p>Welcome</p> Join the Squad and get $10 off
+							<p>Welcome</p> Join the Squad and get $20 off
 							</h3>
 							<span className="mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-victoria-800"></span>
 							<p className="mb-10 text-base leading-relaxed text-body-color">
-							Be the first to hear about new launches. Sales, and Offers, and $10 off when you sign up	
+							Be the first to hear about new launches. Sales, and Offers, and $20 off when you sign up	
 							</p>
 							<div className="">
 								<SubscribeEmailPopup></SubscribeEmailPopup>

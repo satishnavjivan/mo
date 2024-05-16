@@ -198,7 +198,7 @@ const ProductList = ({ product, tokenValid, options, customerData, setCustomerDa
 
 		{*/}
 				{(() => {
-					if (product?.type == 'variable' && product.attributes.length > 0) {
+					/*if (product?.type == 'variable' && product.attributes.length > 0) {
 						return (
 							<div className='flex items-center gap-1 flex-wrap'><b>Options :</b>
 								{product.attributes.map(element => {
@@ -207,7 +207,7 @@ const ProductList = ({ product, tokenValid, options, customerData, setCustomerDa
 								})}
 							</div>
 						);
-					}
+					}*/
 				})()}
 				{(() => {
 					if (productMidweek != '' && product?.type == 'simple' ) {

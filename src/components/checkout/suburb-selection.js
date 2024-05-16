@@ -33,7 +33,7 @@ const SuburbSelection = ({ handleOnChange, input, suburbs, isFetchingSuburb, isS
 			</div>
 		)
 	}
-	//console.log('suburbs',suburbs);
+	console.log('suburbs',suburbs);
 	//console.log('suburb',city);
 	if (!suburbs.length) {
 		return null;

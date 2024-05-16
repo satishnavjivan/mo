@@ -81,7 +81,7 @@ function subscribe_email() {
         <div className='grid md:grid-cols-2 gap-4 border-2 border-victoria-700 mb-5 bg-chelsea-400 text-white p-4 items-center'>
             <div>
                 <h3 className='font-medium text-2xl'>Subscribe our Newsletter</h3>
-                <p>Subscribe our newsletter for get notification about information discount.</p>
+                <p>Get $10 store credit added to your account and enjoy a $20 discount code as our welcome gift.</p>
             </div>
             <div>
                 <div className='relative'>

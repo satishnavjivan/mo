@@ -156,7 +156,7 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 		};
 		// validation other fiield 
 		const ValidationResult = validateAndSanitizeCheckoutForm(input);
-		console.log('ValidationResult', ValidationResult);
+		//console.log('ValidationResult', ValidationResult);
 
 		// update error message
 		setInput({
@@ -245,8 +245,8 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 				{
 					await handleUpdateCustomer(input,customerData?.id);
 					const updateAccountData	= await get_customer(customerData.email, setCustomerData);
-					console.log('input   sss', input);
-					console.log('updateAccountData sss', updateAccountData);
+					//console.log('input   sss', input);
+					//console.log('updateAccountData sss', updateAccountData);
 				}
 		}
 		// For stripe payment mode, handle the strip payment and thank you.
@@ -503,13 +503,13 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 		}
 		//await setStatesForCountry( target, setTheBillingStates, setIsFetchingBillingStates );
 	};
-	console.log('input', input);
-	console.log('customerData', customerData);
+	//console.log('input', input);
+	//console.log('customerData', customerData);
 	useEffect(() => {
 		if (localStorage.getItem('customerData')) {
 			var customerDataTMP = JSON.parse(localStorage.getItem('customerData'));
 			setCustomerData(customerDataTMP);
-			console.log('customerDataTMP', customerDataTMP);
+			//console.log('customerDataTMP', customerDataTMP);
 			if (customerDataTMP != undefined && customerDataTMP != '') {
 				// Shipping field
 				customerDataTMP.shipping.firstName = customerDataTMP.shipping.first_name;
@@ -542,10 +542,10 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 				});
 
 				if (input?.billingDifferentThanShipping) {
-					console.log('s ', customerDataTMP.billing.postcode);
+					//console.log('s ', customerDataTMP.billing.postcode);
 					shippingCalculation(customerDataTMP.shipping.postcode);
 				} else {
-					console.log('b ', customerDataTMP.billing.postcode);
+					//console.log('b ', customerDataTMP.billing.postcode);
 					shippingCalculation(customerDataTMP.billing.postcode);
 				}
 
@@ -589,7 +589,7 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 		// discount Bundle  product
 		var discount_bundle = 0;
 		discount_bundle = get_discount_bundle(cart?.cartItems, options, totalPrice, coutData);
-		console.log('reurn bundle discount', discount_bundle);
+		//console.log('reurn bundle discount', discount_bundle);
 		if (discount_bundle != 0) {
 			setDiscountBundleDis(discount_bundle);
 			if (coutData?.bundlediscountPrice != undefined) {
@@ -659,7 +659,7 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 		//console.log('postcode W',postcode)
 		if (undefined != postcode) {
 			var postcodeLength = postcode.length;
-			if (postcodeLength >= 3 && postcodeLength <= 4) {
+			if (postcodeLength >= 3 && postcodeLength == 4) {
 				if (isBilling) {
 					setIsFetchingBillingSuburb(true);
 				} else {
@@ -668,23 +668,51 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 
 				console.log('postcode suburb', postcode)
 				var resDta = '';
+				var errorsuburbRes = false;
+				console.log('theBillingsuburb before',theBillingsuburb)
 				await axios.post(SUBURB_API_URL, { postcode: postcode })
 					.then(res => {
 						//console.log(res);
 						resDta = res.data;
+
 					})
 					.catch(err => console.log(err))
 				console.log('dataPost', resDta);
-				var errorsuburbRes = false;
+				
 				if (!isEmpty(resDta) && resDta != '' && resDta != undefined) {
 					if (!isEmpty(resDta.localities) && resDta.localities != '' && resDta.localities != undefined) {
-						if (isBilling) {
-							setTheBillingsuburb(resDta.localities.locality);
-
-						} else {
-							setTheShippingsuburb(resDta.localities.locality);
-
-						}
+						console.log('resDta.localities.locality',resDta.localities.locality)
+						console.log('resDta.localities.locality',resDta.localities.locality.category)
+						//var resSuburb = [];
+						if(resDta.localities.locality.category == undefined)
+							{
+									//resSuburb = resDta.localities.locality;
+								if (isBilling) {
+									setTheBillingsuburb(resDta.localities.locality);
+		
+								} else {
+									setTheShippingsuburb(resDta.localities.locality);
+		
+								}
+							}else{
+								//Object.assign(resSuburb, {0: resDta.localities.locality});
+								if (isBilling) {
+									setTheBillingsuburb([resDta.localities.locality]);
+									console.log('theBillingsuburb ------- after',theBillingsuburb)
+								} else {
+									//setTheShippingsuburb([resDta.localities.locality]);
+		
+								}
+							}
+							
+						/*console.log('resSuburb',resSuburb);
+							if (isBilling) {
+								setTheBillingsuburb(resSuburb);
+	
+							} else {
+								setTheShippingsuburb(resSuburb);
+	
+							}*/
 					} else {
 						errorsuburbRes = true;
 					}
@@ -710,11 +738,11 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 	/** Shipping calculation  */
 	const shippingCalculation = async (postcode) => {
 		setPostcodedis(postcode);
-		console.log('postcode shipping', postcode);
+		//console.log('postcode shipping', postcode);
 		if (postcode.length == 4 && (cart?.cartItems?.length > 0)) {
 
 			const shippingData = await getShipping(postcode, cart?.cartItems);
-			console.log('shippingData', shippingData);
+			//console.log('shippingData', shippingData);
 			setNotice(shippingData.notice)
 			if (shippingData.notice.length > 0) {
 				setCart({ ...cart, shippingCost: -1 });
@@ -726,13 +754,13 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 	}
 
 	useEffect(() => {
-		console.log('cart', cart);
+		//console.log('cart', cart);
 		if (!WEB_DEVICE && cart == null) {
 			//createdOrderData.
 			if (createdOrderData?.allData?.payment_method == 'afterpay' ||
 				createdOrderData?.allData?.payment_method == 'laybuy') {
-				console.log('createdOrderData payment_method', createdOrderData?.allData?.payment_method);
-				console.log('api call', cart);
+				//console.log('createdOrderData payment_method', createdOrderData?.allData?.payment_method);
+				//console.log('api call', cart);
 				//createdOrderData?.orderPostID
 
 				(async () => {
@@ -749,7 +777,7 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 
 		if (webtomobileURL != '') {
 			clearInterval(myInterval);
-			console.log('webtomobileURL', webtomobileURL);
+			//console.log('webtomobileURL', webtomobileURL);
 			Router.push(webtomobileURL);
 		}
 	}, [webtomobileURL]);
@@ -764,23 +792,24 @@ const CheckoutForm = ({ countriesData, paymentModes, options }) => {
 						return '_web_to_mobil' == meta_data?.key;
 					});
 					if (found == undefined) {
-						console.log('notfound');
+						//console.log('notfound');
 					} else {
 						setWebtomoblieURL(found.value);
 					}
 				}
 
 			}
-			console.log('orderDataget', getOrder_web_to_mobile);
+			//console.log('orderDataget', getOrder_web_to_mobile);
 			webtomobileURLCount++;
 		}
-		console.log('webtomobileURLCount', webtomobileURLCount);
+		//console.log('webtomobileURLCount', webtomobileURLCount);
 	};
 
-	console.log('paymentMethodDiscount', paymentMethodDiscount);
-	console.log('cartSubTotalDiscount', cartSubTotalDiscount);
-	console.log('createdOrderData', createdOrderData);
-	console.log('coutData', coutData);
+	//console.log('paymentMethodDiscount', paymentMethodDiscount);
+	//console.log('cartSubTotalDiscount', cartSubTotalDiscount);
+	//console.log('createdOrderData', createdOrderData);
+	//console.log('coutData', coutData);
+	console.log('theBillingsuburb', theBillingsuburb);
 
 
 
