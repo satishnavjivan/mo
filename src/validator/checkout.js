@@ -56,7 +56,14 @@ const validateAndSanitizeCheckoutForm = ( data, hasStates = true,isShipping ) =>
 		 * Check for error and if there is no error then sanitize data.
 		 */
 		if ( ! validator.isLength( data[ fieldName ], { min, max } ) ){
-			errors[ fieldName ] = `${errorContent} must be ${min} to ${max} characters`;
+
+			if(fieldName == 'postcode')
+				{
+					errors[ fieldName ] = `Please Enter postcode in. 4 digits`;
+				}else{
+
+					errors[ fieldName ] = `${errorContent} must be ${min} to ${max} characters`;
+				}
 		}
 		
 		if ( 'email' === type && ! validator.isEmail( data[ fieldName ] ) ){
@@ -87,7 +94,7 @@ const validateAndSanitizeCheckoutForm = ( data, hasStates = true,isShipping ) =>
 	addErrorAndSanitizedData( 'country', 'Country name', 2, 55, 'string', true );
 	addErrorAndSanitizedData( 'address1', 'Street address line 1', 12, 100,'string',true );
 	addErrorAndSanitizedData( 'address2', '', 0, 254, 'string', false );
-	addErrorAndSanitizedData( 'postcode', 'Post code', 2, 10, 'postcode', true );
+	addErrorAndSanitizedData( 'postcode', 'Post code', 4, 4, 'postcode', true );
 	addErrorAndSanitizedData( 'city', 'Suburb field', 3, 25, 'string', true );
 	addErrorAndSanitizedData( 'state', 'State/Country', 0, 254, 'string', hasStates );
 	addErrorAndSanitizedData( 'phone', 'Phone number', 10, 15, 'phone', true );

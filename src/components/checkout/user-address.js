@@ -76,6 +76,7 @@ const Address = ({ suburbs, input, countries, states, handleOnChange, isFetching
 				required
 				handleOnChange={handleOnChange}
 				label="Post code"
+				placeholder="enter valid postcode in. 4 digits"
 				errors={!suburbs.length && input?.postcode ? {
 					"postcode": "Enter valide postcode ",
 				} : errors}
