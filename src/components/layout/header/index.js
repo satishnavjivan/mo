@@ -32,8 +32,8 @@ const Header = ({ header, footer }) => {
 	const toggleSidebar = () => {
 		if(router?.pathname == '/checkout')
 			{
-				//Router.push("/cart/");
-				//return '';
+				Router.push("/cart/");
+				return '';
 			}
 		setIsSidebarOpen(!isSidebarOpen);
 		document.body.style.overflow = 'hidden';
